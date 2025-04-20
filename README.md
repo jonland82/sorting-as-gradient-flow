@@ -1,27 +1,17 @@
+**Sorting as Gradient Flow on the Permutohedron**  
+Jonathan Landers, 2025  
 
-### Sorting as Gradient Flow on the Permutohedron
+This repository accompanies the paper *"Sorting as Gradient Flow on the Permutohedron"* (Landers, 2025), which presents a novel continuous-time geometric formulation of sorting. The formulation provides an independent derivation of the classical Ω(n log n) lower bound for comparison-based sorting.
 
-- Jonathan Landers, 2025
+**Summary**  
+Efficient sorting algorithms are known to navigate an exponentially large space of permutations using only O(n log n) comparisons. This work offers a continuous geometric explanation for this efficiency by modeling sorting as a gradient flow on the permutohedron—a polytope whose vertices correspond to permutations.
 
-This repository accompanies the paper *"Sorting as Gradient Flow on the Permutohedron"* (Landers, 2025), which introduces a novel continuous-time geometric formulation of sorting. The formulation yields an independent derivation of the classical $\Omega(n \log n)$ lower bound for comparison-based sorting.
+**Main Contribution**
 
-#### Summary
+- **Gradient Flow Interpretation**: Sorting is expressed as a continuous-time dynamical system governed by the differential equation dx/dt = v_s - x(t), where v_s is the sorted vector (1, 2, ..., n). The system exhibits exponential contraction toward the sorted vector.
 
-Efficient sorting algorithms are known to navigate an exponentially large permutation space using only $O(n \log n)$ comparisons. This work provides a continuous geometric explanation for this efficiency by modeling sorting as gradient flow on the permutohedron—a polytope whose vertices represent permutations.
+- **Independent Lower Bound Proof**: Assuming each comparison corresponds to a step of size O(1/n) along the continuous flow, the total number of comparisons required is shown to satisfy T = Θ(n log n), thus recovering the classical lower bound through geometric reasoning.
 
-#### Main Contribution
+- **Geometric Constraint Perspective**: Each comparison imposes a linear constraint intersecting the permutohedron. A sequence of O(n log n) such constraints is sufficient to isolate the sorted permutation as a unique vertex of the polytope.
 
-- **Gradient Flow Interpretation**: Sorting is expressed as a continuous dynamical system
-  $$
-  \dot{x}(t) = v_s - x(t),
-  $$
-  where $v_s = (1, 2, \dots, n)$ is the sorted vector. The system contracts exponentially:
-  $$
-  \|x(t) - v_s\|^2 = \|x(0) - v_s\|^2 e^{-2t}.
-  $$
-
-- **Independent Lower Bound Proof**: If each comparison corresponds to an $O(1/n)$ step along the flow, then total comparisons required satisfy $T = \Theta(n \log n)$, recovering the classical lower bound.
-
-- **Geometric Constraint View**: Each comparison defines a linear constraint that intersects the permutohedron. A sequence of $O(n \log n)$ such constraints suffices to isolate the sorted permutation as a unique vertex.
-
-- **Unifying Framework**: The continuous formulation complements classical decision-tree and combinatorial arguments, offering a unified perspective on why structure enables efficient traversal of exponential spaces.
+- **Unifying Framework**: The continuous formulation complements traditional decision-tree and combinatorial approaches, offering a unified perspective on how structure enables efficient traversal of exponential spaces.
