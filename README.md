@@ -1,6 +1,10 @@
 **Sorting as Gradient Flow on the Permutohedron**  
 Jonathan Landers, 2025  
 
+- [Manuscript PDF](https://github.com/jonland82/sorting-as-gradient-flow/blob/main/sorting-as-gradient-flow.pdf)
+- [Proof Verification Scripts](https://github.com/jonland82/sorting-as-gradient-flow/blob/main/sorting%20as%20gradient%20flow%20-%20proof%20verifications.ipynb)
+- [Manuscript Figure Generation Code](https://github.com/jonland82/sorting-as-gradient-flow/blob/main/sorting%20as%20gradient%20flow%20-%20paper%20figures.ipynb)
+
 This repository accompanies the paper *"Sorting as Gradient Flow on the Permutohedron"* (Landers, 2025), which presents a novel continuous-time geometric formulation of sorting. The formulation provides an independent derivation of the classical Ω(n log n) lower bound for comparison-based sorting.
 
 **Summary**  
