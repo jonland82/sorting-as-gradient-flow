@@ -128,10 +128,14 @@
       overflow: hidden;
       border-bottom: 1px solid var(--line);
       background-image:
-        linear-gradient(90deg, rgba(8, 11, 16, 0.95) 0%, rgba(8, 11, 16, 0.84) 42%, rgba(8, 11, 16, 0.44) 100%),
-        linear-gradient(0deg, rgba(8, 11, 16, 1) 0%, rgba(8, 11, 16, 0.46) 34%, rgba(8, 11, 16, 0.30) 100%),
-        url("assets/sorting-figure-preview.png");
-      background-size: cover;
+        linear-gradient(90deg, rgba(8, 11, 16, 0.98) 0%, rgba(8, 11, 16, 0.78) 58%, rgba(8, 11, 16, 0.62) 100%),
+        linear-gradient(0deg, rgba(8, 11, 16, 1) 0%, rgba(8, 11, 16, 0.58) 38%, rgba(8, 11, 16, 0.24) 100%),
+        linear-gradient(rgba(232, 238, 232, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232, 238, 232, 0.045) 1px, transparent 1px),
+        radial-gradient(circle at 74% 38%, rgba(114, 215, 209, 0.18), transparent 17rem),
+        radial-gradient(circle at 88% 72%, rgba(154, 223, 143, 0.13), transparent 15rem),
+        #080b10;
+      background-size: auto, auto, 42px 42px, 42px 42px, auto, auto, auto;
       background-position: center right;
     }
 
@@ -461,19 +465,45 @@
       font-weight: 520;
     }
 
-    .paper-image {
+    .paper-graphic {
+      position: relative;
+      display: block;
       min-height: 320px;
-      background: #e9ece6;
+      background:
+        linear-gradient(rgba(232, 238, 232, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232, 238, 232, 0.045) 1px, transparent 1px),
+        radial-gradient(circle at 22% 24%, rgba(114, 215, 209, 0.18), transparent 10rem),
+        radial-gradient(circle at 82% 74%, rgba(154, 223, 143, 0.12), transparent 9rem),
+        rgba(9, 14, 18, 0.94);
+      background-size: 32px 32px, 32px 32px, auto, auto, auto;
       overflow: hidden;
     }
 
-    .paper-image img {
+    .paper-graphic svg {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center;
+      min-height: 320px;
       display: block;
-      filter: saturate(0.86) contrast(1.05);
+    }
+
+    .graphic-caption {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: rgba(232, 238, 232, 0.72);
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 11px;
+    }
+
+    .graphic-chip {
+      padding: 6px 8px;
+      border: 1px solid rgba(232, 238, 232, 0.13);
+      border-radius: 999px;
+      background: rgba(5, 7, 10, 0.38);
     }
 
     .side-stack {
@@ -504,7 +534,7 @@
       display: grid;
       grid-template-columns: minmax(0, 0.52fr) minmax(0, 0.48fr);
       gap: 16px;
-      align-items: start;
+      align-items: stretch;
     }
 
     .future-card {
@@ -534,22 +564,21 @@
       margin: 0;
     }
 
-    .manuscript-frame {
-      border: 1px solid var(--line);
+    .entropy-graphic {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      min-height: 100%;
+      border: 1px solid rgba(232, 238, 232, 0.14);
       border-radius: 8px;
-      overflow: hidden;
-      background: #e9ece6;
-      height: 320px;
-      min-height: 320px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
     }
 
-    .manuscript-frame img {
-      width: 100%;
-      height: 100%;
-      min-height: 320px;
-      object-fit: cover;
-      object-position: top center;
-      display: block;
+    .entropy-graphic svg {
+      height: auto;
+      max-height: 340px;
+      min-height: 0;
     }
 
     .footer {
@@ -607,16 +636,7 @@
         min-height: 0;
       }
 
-      .paper-image {
-        min-height: 300px;
-      }
-
-      .manuscript-frame {
-        height: 300px;
-        min-height: 300px;
-      }
-
-      .manuscript-frame img {
+      .paper-graphic {
         min-height: 300px;
       }
     }
@@ -782,8 +802,53 @@
               <a class="button primary" href="sorting_as_gradient_flow.pdf">Open Manuscript</a>
             </div>
           </div>
-          <a class="paper-image" href="sorting_as_gradient_flow.pdf" aria-label="Open updated sorting manuscript PDF">
-            <img src="assets/sorting-figure-preview.png" alt="Rendered manuscript page showing the gradient-flow figure and conclusion.">
+          <a class="paper-graphic sorting-graphic" href="sorting_as_gradient_flow.pdf" aria-label="Open updated sorting manuscript PDF">
+            <svg viewBox="0 0 520 360" role="img" aria-labelledby="sorting-graphic-title sorting-graphic-desc">
+              <title id="sorting-graphic-title">Stylized permutohedron and gradient-flow diagram</title>
+              <desc id="sorting-graphic-desc">Rank-word vertices on a permutohedron with comparison cuts and a flow toward the sorted vertex.</desc>
+              <defs>
+                <linearGradient id="flowGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#d88e8e"/>
+                  <stop offset="48%" stop-color="#72d7d1"/>
+                  <stop offset="100%" stop-color="#9adf8f"/>
+                </linearGradient>
+                <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M104 226 L148 92 L270 68 L398 142 L356 276 L216 300 Z" stroke="rgba(232,238,232,.30)" stroke-width="2"/>
+                <path d="M104 226 L270 68 L356 276 M148 92 L398 142 L216 300 M104 226 L398 142 M148 92 L356 276" stroke="rgba(232,238,232,.14)" stroke-width="1.2"/>
+                <path d="M104 226 C168 202 226 174 282 142 C326 116 360 104 398 142" stroke="url(#flowGrad)" stroke-width="7" filter="url(#softGlow)"/>
+                <path d="M98 88 L402 266" stroke="rgba(232,196,111,.48)" stroke-width="2" stroke-dasharray="8 8"/>
+                <path d="M196 48 L390 292" stroke="rgba(114,215,209,.34)" stroke-width="1.5" stroke-dasharray="5 9"/>
+                <path d="M84 248 C164 270 248 258 368 212" stroke="rgba(154,223,143,.28)" stroke-width="2" stroke-dasharray="3 8"/>
+              </g>
+              <g font-family="SFMono-Regular, Consolas, monospace" font-size="13" fill="#dce7df">
+                <circle cx="104" cy="226" r="7" fill="#d88e8e"/>
+                <circle cx="148" cy="92" r="6" fill="#c7d0ca"/>
+                <circle cx="270" cy="68" r="6" fill="#c7d0ca"/>
+                <circle cx="398" cy="142" r="8" fill="#9adf8f"/>
+                <circle cx="356" cy="276" r="6" fill="#c7d0ca"/>
+                <circle cx="216" cy="300" r="6" fill="#c7d0ca"/>
+                <text x="78" y="248">(3,2,1)</text>
+                <text x="378" y="122" fill="#9adf8f">v_s</text>
+                <text x="42" y="78" fill="#e8c46f">comparison half-spaces</text>
+                <text x="244" y="188" fill="#72d7d1">x' = v_s - x</text>
+              </g>
+              <g>
+                <rect x="284" y="248" width="170" height="42" rx="8" fill="rgba(5,7,10,.44)" stroke="rgba(232,238,232,.14)"/>
+                <text x="300" y="274" fill="#e8eee8" font-size="14" font-family="Georgia, serif">V(x)=1/2||x-v_s||^2</text>
+              </g>
+            </svg>
+            <div class="graphic-caption">
+              <span class="graphic-chip">rank-word vertices</span>
+              <span class="graphic-chip">constraint collapse</span>
+            </div>
           </a>
         </article>
         <div class="side-stack">
@@ -822,8 +887,52 @@
             <a class="button" href="flattening_entropy.pdf">Open Companion Manuscript</a>
           </div>
         </article>
-        <a class="manuscript-frame" href="flattening_entropy.pdf" aria-label="Open flattening entropy companion manuscript PDF">
-          <img src="assets/flattening-preview.png" alt="Rendered first page of the flattening entropy companion manuscript.">
+        <a class="paper-graphic entropy-graphic" href="flattening_entropy.pdf" aria-label="Open flattening entropy companion manuscript PDF">
+          <svg viewBox="0 0 520 360" role="img" aria-labelledby="entropy-graphic-title entropy-graphic-desc">
+            <title id="entropy-graphic-title">Stylized flattening entropy decomposition</title>
+            <desc id="entropy-graphic-desc">Total sorting entropy split into flattened bucket entropy and residual within-bucket entropy.</desc>
+            <defs>
+              <linearGradient id="gainGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#72d7d1"/>
+                <stop offset="100%" stop-color="#9adf8f"/>
+              </linearGradient>
+              <linearGradient id="residGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#e8c46f"/>
+                <stop offset="100%" stop-color="#d88e8e"/>
+              </linearGradient>
+            </defs>
+            <g font-family="SFMono-Regular, Consolas, monospace">
+              <text x="44" y="54" fill="#e8eee8" font-size="16">log(n!)</text>
+              <rect x="44" y="72" width="420" height="30" rx="15" fill="rgba(232,238,232,.08)" stroke="rgba(232,238,232,.16)"/>
+              <rect x="44" y="72" width="250" height="30" rx="15" fill="url(#gainGrad)" opacity=".82"/>
+              <rect x="294" y="72" width="170" height="30" rx="15" fill="url(#residGrad)" opacity=".76"/>
+              <text x="98" y="124" fill="#9adf8f" font-size="13">flattening gain</text>
+              <text x="318" y="124" fill="#e8c46f" font-size="13">residual</text>
+            </g>
+            <g transform="translate(54 158)" font-family="SFMono-Regular, Consolas, monospace">
+              <rect x="0" y="0" width="74" height="74" rx="8" fill="rgba(114,215,209,.16)" stroke="rgba(114,215,209,.46)"/>
+              <rect x="92" y="18" width="74" height="56" rx="8" fill="rgba(154,223,143,.14)" stroke="rgba(154,223,143,.42)"/>
+              <rect x="184" y="34" width="74" height="40" rx="8" fill="rgba(232,196,111,.14)" stroke="rgba(232,196,111,.42)"/>
+              <rect x="276" y="48" width="74" height="26" rx="8" fill="rgba(216,142,142,.13)" stroke="rgba(216,142,142,.40)"/>
+              <text x="22" y="43" fill="#e8eee8" font-size="15">B1</text>
+              <text x="114" y="52" fill="#e8eee8" font-size="15">B2</text>
+              <text x="206" y="60" fill="#e8eee8" font-size="15">B3</text>
+              <text x="298" y="67" fill="#e8eee8" font-size="15">B4</text>
+              <path d="M370 38 C392 30 406 18 420 0" fill="none" stroke="#72d7d1" stroke-width="2" stroke-dasharray="5 7"/>
+            </g>
+            <g font-family="Georgia, serif" fill="#e8eee8">
+              <rect x="52" y="270" width="416" height="46" rx="8" fill="rgba(5,7,10,.44)" stroke="rgba(232,238,232,.14)"/>
+              <text x="78" y="299" font-size="17">log(n!) = log(n! / prod n_j!) + sum log(n_j!)</text>
+            </g>
+            <g font-family="SFMono-Regular, Consolas, monospace" font-size="12" fill="rgba(232,238,232,.68)">
+              <text x="54" y="244">ordered bucket map</text>
+              <text x="332" y="244">within-bucket comparison work</text>
+            </g>
+          </svg>
+          <div class="graphic-caption">
+            <span class="graphic-chip">partial flattening</span>
+            <span class="graphic-chip">residual entropy</span>
+          </div>
         </a>
       </div>
     </section>
