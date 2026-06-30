@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Project page for Sorting as Gradient Flow on the Permutohedron by Jonathan Robert Landers.">
+  <title>Sorting as Gradient Flow on the Permutohedron</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["$$", "$$"]]
+      },
+      svg: {
+        fontCache: "global"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080b10;
+      --panel: #10161d;
+      --panel-soft: #151b19;
+      --line: rgba(231, 239, 232, 0.14);
+      --text: #e8eee8;
+      --muted: #a8b3ad;
+      --faint: #707b76;
+      --cyan: #72d7d1;
+      --green: #9adf8f;
+      --gold: #e8c46f;
+      --rose: #d88e8e;
+      --ink: #05070a;
+      --max: 1040px;
+      --gutter: clamp(44px, 8vw, 112px);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 18% 14%, rgba(114, 215, 209, 0.12), transparent 26rem),
+        radial-gradient(circle at 84% 20%, rgba(232, 196, 111, 0.08), transparent 24rem),
+        linear-gradient(180deg, #080b10 0%, #0b0f12 42%, #080b10 100%);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.62;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(232, 238, 232, 0.09);
+      background: rgba(8, 11, 16, 0.78);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(100% - var(--gutter), var(--max));
+      margin: 0 auto;
+      min-height: 58px;
+      gap: 18px;
+    }
+
+    .mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-size: 13px;
+      font-weight: 680;
+      color: #f2f6f2;
+      white-space: nowrap;
+    }
+
+    .mark-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      box-shadow: 0 0 20px rgba(114, 215, 209, 0.55);
+      flex: 0 0 auto;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .navlinks a {
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    .navlinks a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 70svh;
+      display: grid;
+      align-items: start;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background-image:
+        linear-gradient(90deg, rgba(8, 11, 16, 0.95) 0%, rgba(8, 11, 16, 0.84) 42%, rgba(8, 11, 16, 0.44) 100%),
+        linear-gradient(0deg, rgba(8, 11, 16, 1) 0%, rgba(8, 11, 16, 0.46) 34%, rgba(8, 11, 16, 0.30) 100%),
+        url("assets/sorting-figure-preview.png");
+      background-size: cover;
+      background-position: center right;
+    }
+
+    .hero-inner {
+      width: min(100% - var(--gutter), var(--max));
+      margin: 0 auto;
+      padding: 104px 0 58px;
+    }
+
+    .kicker {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .pill {
+      border: 1px solid rgba(232, 238, 232, 0.16);
+      background: rgba(8, 11, 16, 0.48);
+      border-radius: 999px;
+      padding: 5px 9px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.06;
+      letter-spacing: 0;
+      color: #f6faf6;
+    }
+
+    h1 {
+      max-width: 690px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(36px, 5.2vw, 64px);
+      font-weight: 520;
+    }
+
+    .subtitle {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: #c7d0ca;
+      font-size: clamp(14px, 1.45vw, 17px);
+      line-height: 1.6;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 38px;
+      padding: 9px 13px;
+      border: 1px solid rgba(232, 238, 232, 0.16);
+      border-radius: 999px;
+      background: rgba(232, 238, 232, 0.08);
+      color: #f3f8f3;
+      font-size: 13px;
+      font-weight: 680;
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, rgba(114, 215, 209, 0.22), rgba(154, 223, 143, 0.18));
+      border-color: rgba(154, 223, 143, 0.38);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(232, 238, 232, 0.32);
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    section {
+      width: min(100% - var(--gutter), var(--max));
+      margin: 0 auto;
+      padding: 68px 0;
+    }
+
+    .hero {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(260px, 0.48fr);
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(24px, 3.3vw, 38px);
+      font-weight: 520;
+    }
+
+    .lead {
+      color: var(--muted);
+      margin: 0;
+      max-width: 680px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .metric {
+      min-height: 122px;
+      padding: 20px;
+      background: rgba(13, 18, 22, 0.82);
+    }
+
+    .metric strong {
+      display: block;
+      color: #f4f8f2;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      line-height: 1.05;
+      font-weight: 520;
+      word-break: break-word;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .story-card, .paper-card, .future-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(16, 22, 29, 0.74);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+    }
+
+    .story-card {
+      padding: 22px;
+      min-height: 260px;
+    }
+
+    .step {
+      display: inline-flex;
+      width: 28px;
+      height: 28px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-bottom: 22px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--ink);
+      background: var(--cyan);
+    }
+
+    .story-card:nth-child(2) .step {
+      background: var(--gold);
+    }
+
+    .story-card:nth-child(3) .step {
+      background: var(--green);
+    }
+
+    h3 {
+      font-size: 17px;
+      font-weight: 720;
+      margin-bottom: 12px;
+    }
+
+    .story-card p, .paper-card p, .future-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .equation-band {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.5fr);
+      gap: 28px;
+      align-items: center;
+      border: 1px solid rgba(114, 215, 209, 0.18);
+      background:
+        linear-gradient(135deg, rgba(114, 215, 209, 0.08), transparent 46%),
+        rgba(12, 17, 18, 0.86);
+      border-radius: 8px;
+      padding: 30px;
+    }
+
+    .equation {
+      display: grid;
+      gap: 10px;
+      font-size: 15px;
+      color: #eff7f1;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .equation .math-line {
+      padding: 10px 12px;
+      border: 1px solid rgba(232, 238, 232, 0.1);
+      border-radius: 8px;
+      background: rgba(5, 7, 10, 0.26);
+      overflow-x: auto;
+    }
+
+    .equation .math-line mjx-container {
+      margin: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    .equation .math-note {
+      display: block;
+      color: var(--muted);
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .flow-visual {
+      position: relative;
+      min-height: 230px;
+      border: 1px solid rgba(232, 238, 232, 0.13);
+      border-radius: 8px;
+      background:
+        linear-gradient(rgba(232, 238, 232, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232, 238, 232, 0.045) 1px, transparent 1px),
+        radial-gradient(circle at 78% 24%, rgba(154, 223, 143, 0.18), transparent 7rem),
+        #0b1115;
+      background-size: 34px 34px, 34px 34px, auto, auto;
+      overflow: hidden;
+    }
+
+    .node {
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--text);
+      box-shadow: 0 0 0 5px rgba(232, 238, 232, 0.08);
+    }
+
+    .node.a { left: 14%; bottom: 20%; }
+    .node.b { left: 30%; bottom: 58%; }
+    .node.c { left: 51%; bottom: 34%; }
+    .node.d { left: 78%; bottom: 72%; background: var(--green); }
+
+    .flow-line {
+      position: absolute;
+      left: 15%;
+      right: 20%;
+      bottom: 27%;
+      height: 3px;
+      transform: rotate(-30deg);
+      transform-origin: left center;
+      background: linear-gradient(90deg, rgba(216, 142, 142, 0.9), var(--cyan), var(--green));
+      box-shadow: 0 0 28px rgba(114, 215, 209, 0.26);
+    }
+
+    .edge-line {
+      position: absolute;
+      left: 16%;
+      right: 17%;
+      bottom: 24%;
+      height: 1px;
+      transform: rotate(-7deg);
+      border-top: 1px dashed rgba(232, 238, 232, 0.42);
+    }
+
+    .visual-label {
+      position: absolute;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .visual-label.start { left: 10%; bottom: 8%; }
+    .visual-label.end { right: 10%; top: 12%; color: var(--green); }
+    .visual-label.mid { left: 37%; top: 20%; color: var(--cyan); }
+
+    .papers {
+      display: grid;
+      grid-template-columns: minmax(0, 0.64fr) minmax(0, 0.36fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .paper-card {
+      display: grid;
+      grid-template-columns: minmax(0, 0.52fr) minmax(240px, 0.48fr);
+      overflow: hidden;
+      min-height: 380px;
+    }
+
+    .paper-copy {
+      padding: 24px;
+    }
+
+    .paper-copy h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      font-weight: 520;
+    }
+
+    .paper-image {
+      min-height: 320px;
+      background: #e9ece6;
+      overflow: hidden;
+    }
+
+    .paper-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter: saturate(0.86) contrast(1.05);
+    }
+
+    .side-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .mini-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(21, 27, 25, 0.74);
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #f3f8f3;
+    }
+
+    .mini-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .future {
+      display: grid;
+      grid-template-columns: minmax(0, 0.52fr) minmax(0, 0.48fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .future-card {
+      padding: 26px;
+      background:
+        linear-gradient(135deg, rgba(232, 196, 111, 0.12), transparent 54%),
+        rgba(16, 22, 29, 0.78);
+    }
+
+    .formula-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+      color: #eff7f1;
+      font-size: 13px;
+    }
+
+    .formula-list div {
+      padding: 12px;
+      border: 1px solid rgba(232, 238, 232, 0.12);
+      border-radius: 8px;
+      background: rgba(5, 7, 10, 0.36);
+      overflow-x: auto;
+    }
+
+    .formula-list mjx-container {
+      margin: 0;
+    }
+
+    .manuscript-frame {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #e9ece6;
+      min-height: 420px;
+    }
+
+    .manuscript-frame img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 32px 0 42px;
+      color: var(--faint);
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      width: min(100% - var(--gutter), var(--max));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 880px) {
+      .nav {
+        min-height: 54px;
+      }
+
+      .navlinks {
+        display: none;
+      }
+
+      .hero {
+        min-height: 74svh;
+        background-position: 62% center;
+      }
+
+      .hero-inner {
+        padding-top: 86px;
+        padding-bottom: 54px;
+      }
+
+      section {
+        padding: 58px 0;
+      }
+
+      .section-head, .equation-band, .papers, .paper-card, .future {
+        grid-template-columns: 1fr;
+      }
+
+      .metric-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .paper-card {
+        min-height: 0;
+      }
+
+      .paper-image {
+        min-height: 300px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      body {
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 31px;
+      }
+
+      .hero-inner, section, .nav, .footer-inner {
+        width: min(100% - 24px, var(--max));
+      }
+
+      .metric-row {
+        grid-template-columns: 1fr;
+      }
+
+      .equation-band, .future-card, .paper-copy, .story-card {
+        padding: 18px;
+      }
+
+      .actions {
+        align-items: stretch;
+      }
+
+      .button {
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Primary">
+      <a class="mark" href="#top" aria-label="Sorting as Gradient Flow home">
+        <span class="mark-dot" aria-hidden="true"></span>
+        <span>Sorting as Gradient Flow</span>
+      </a>
+      <div class="navlinks">
+        <a href="#story">Story</a>
+        <a href="#flow">Flow</a>
+        <a href="#papers">Papers</a>
+        <a href="#future">Future Work</a>
+        <a href="https://github.com/jonland82/sorting-as-gradient-flow">Code</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="kicker">
+          <span class="pill">Jonathan Robert Landers</span>
+          <span class="pill">Permutohedron geometry</span>
+        </div>
+        <h1 id="hero-title">Sorting as Gradient Flow on the Permutohedron</h1>
+        <p class="subtitle">
+          A geometric and dynamical model of comparison sorting. The paper starts from the decision-tree lower bound, moves into rank words on the permutohedron, and then uses an ambient gradient flow to show what comparison information is organizing: contraction of disorder inside a structured permutation space.
+        </p>
+        <div class="actions" aria-label="Project links">
+          <a class="button primary" href="sorting_as_gradient_flow.pdf">Read PDF</a>
+          <a class="button" href="sorting-as-gradient-flow_paper-figures.py">Figure Script</a>
+          <a class="button" href="flattening_entropy.pdf">Future Work: Flattening Entropy</a>
+          <a class="button" href="https://github.com/jonland82/sorting-as-gradient-flow">Code Repository</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Key scales">
+      <div class="metric-row">
+        <div class="metric">
+          <strong>\(n!\)</strong>
+          <span>candidate order types before comparisons provide information</span>
+        </div>
+        <div class="metric">
+          <strong>\(\Omega(n\log n)\)</strong>
+          <span>classical comparison lower bound from the decision tree</span>
+        </div>
+        <div class="metric">
+          <strong>\(\Theta(n^2)\)</strong>
+          <span>local adjacent-swap regime on the 1-skeleton</span>
+        </div>
+        <div class="metric">
+          <strong>\(\Theta(\log n)\)</strong>
+          <span>entropy-normalized contraction time for the ambient flow</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="story" aria-labelledby="story-title">
+      <div class="section-head">
+        <h2 id="story-title">The Same Sorting Problem, Three Geometries</h2>
+        <p class="lead">
+          The manuscript keeps the input values, original indices, rank words, and sorted index order separate. If \(v_s=(1,2,\ldots,n)\), the permutohedron \(\mathcal P_n=\operatorname{conv}\{\pi(v_s):\pi\in S_n\}\) becomes the common stage for local motion, global comparison cuts, and continuous relaxation.
+        </p>
+      </div>
+      <div class="story-grid">
+        <article class="story-card">
+          <span class="step">1</span>
+          <h3>Decision Tree</h3>
+          <p>A comparison algorithm must distinguish all \(n!\) order types. A binary tree of height \(h\) has at most \(2^h\) leaves, so \(2^h\ge n!\) and \(h\ge\log_2(n!)=\Theta(n\log n)\).</p>
+        </article>
+        <article class="story-card">
+          <span class="step">2</span>
+          <h3>Permutohedron</h3>
+          <p>Each vertex is a rank word. Adjacent transpositions form edges of the 1-skeleton, so local algorithms walk through neighboring vertices and pay for inversions one at a time.</p>
+        </article>
+        <article class="story-card">
+          <span class="step">3</span>
+          <h3>Comparison Half-Spaces</h3>
+          <p>A comparison between current positions \(a\) and \(b\) becomes an inequality such as \(x_a<x_b\). Each outcome selects a half-space, shrinking the feasible rank words until one vertex remains.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="flow" aria-labelledby="flow-title">
+      <div class="section-head">
+        <h2 id="flow-title">The Gradient-Flow Benchmark</h2>
+        <p class="lead">
+          The continuous model is deliberately a relaxation. It does not say that MergeSort or QuickSort follows a Euclidean trajectory. It gives a precise contraction law for rank displacement, then compares that macroscopic clock with the information supplied by discrete comparisons.
+        </p>
+      </div>
+      <div class="equation-band">
+        <div class="equation" aria-label="Gradient flow equations">
+          <div class="math-line">$$V(x)=\frac{1}{2}\|x-v_s\|^2$$</div>
+          <div class="math-line">$$\dot{x}(t)=-\nabla V(x(t))=v_s-x(t)$$</div>
+          <div class="math-line">$$\|x(t)-v_s\|^2=\|x(0)-v_s\|^2e^{-2t}$$</div>
+          <div class="math-line">$$\dot{x}(t)=\Pi_{T_{K(C)}(x(t))}\bigl(-\nabla V(x(t))\bigr)$$</div>
+          <span class="math-note">The last line is the projected version after comparison outcomes define a feasible convex region \(K(C)\). Projection encodes the active comparison constraints while the potential still measures remaining displacement from the sorted rank word.</span>
+        </div>
+        <div class="flow-visual" aria-label="Stylized rank-word flow diagram">
+          <div class="edge-line" aria-hidden="true"></div>
+          <div class="flow-line" aria-hidden="true"></div>
+          <span class="node a" aria-hidden="true"></span>
+          <span class="node b" aria-hidden="true"></span>
+          <span class="node c" aria-hidden="true"></span>
+          <span class="node d" aria-hidden="true"></span>
+          <span class="visual-label start">x(0)</span>
+          <span class="visual-label mid">half-space cuts</span>
+          <span class="visual-label end">v_s</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="papers" aria-labelledby="papers-title">
+      <div class="section-head">
+        <h2 id="papers-title">Current Project Materials</h2>
+        <p class="lead">
+          The updated LaTeX manuscript and the new Python figure script now live at the repository root. The paper's narrative is not that geometry replaces the classical proof, but that the proof has a visible geometry: factorial search is reduced by comparison constraints that collapse rank-word uncertainty.
+        </p>
+      </div>
+      <div class="papers">
+        <article class="paper-card">
+          <div class="paper-copy">
+            <h3>Updated Sorting Manuscript</h3>
+            <p>The canonical paper develops the decision-tree lower bound, defines rank words on \(\mathcal P_n\), contrasts adjacent-swap walks with comparison half-space pruning, and derives the ambient contraction law for the potential \(V(x)\).</p>
+            <div class="actions">
+              <a class="button primary" href="sorting_as_gradient_flow.pdf">Open Manuscript</a>
+            </div>
+          </div>
+          <a class="paper-image" href="sorting_as_gradient_flow.pdf" aria-label="Open updated sorting manuscript PDF">
+            <img src="assets/sorting-figure-preview.png" alt="Rendered manuscript page showing the gradient-flow figure and conclusion.">
+          </a>
+        </article>
+        <div class="side-stack">
+          <article class="mini-card">
+            <strong>Figure generation</strong>
+            <p>The Python script generates the decision tree, permutohedron views, feasible-set pruning sequence, and gradient-flow figures used to move from discrete comparisons to continuous contraction.</p>
+            <div class="actions">
+              <a class="button" href="sorting-as-gradient-flow_paper-figures.py">Open Script</a>
+            </div>
+          </article>
+          <article class="mini-card">
+            <strong>Older reference files</strong>
+            <p>The original PDF, notebook figure workflow, and proof-verification notebook remain available for comparison with the updated LaTeX version.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="future" aria-labelledby="future-title">
+      <div class="section-head">
+        <h2 id="future-title">Future Work: Flattening Entropy</h2>
+        <p class="lead">
+          The companion manuscript broadens the sorting insight into a geometric language for computation. Algorithms become paths, primitive operations define admissible geometry, and preprocessing is measured by how much entropy, or curvature-like obstruction, it removes before local work remains.
+        </p>
+      </div>
+      <div class="future">
+        <article class="future-card">
+          <h3>From Sorting Geometry to Geometry of Computation</h3>
+          <p>Counting sort becomes a literal flat chart in histogram coordinates. Comparison sorting carries the full flattening entropy. Ordered bucketization sits between them by removing a multinomial block of entropy and leaving only the within-bucket residual comparison problem.</p>
+          <div class="formula-list" aria-label="Flattening entropy formulas">
+            <div>$$F_{\mathrm{cmp}}(n)=\log(n!)+O(1)$$</div>
+            <div>$$G(x;\beta)=\log(n!)-\sum_{j=1}^B\log(n_j!)$$</div>
+            <div>$$F_{\mathrm{res}}(x;\beta)=\sum_{j=1}^B\log(n_j!)$$</div>
+          </div>
+          <div class="actions">
+            <a class="button" href="flattening_entropy.pdf">Open Companion Manuscript</a>
+          </div>
+        </article>
+        <a class="manuscript-frame" href="flattening_entropy.pdf" aria-label="Open flattening entropy companion manuscript PDF">
+          <img src="assets/flattening-preview.png" alt="Rendered first page of the flattening entropy companion manuscript.">
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>Sorting as Gradient Flow on the Permutohedron</span>
+      <span>Jonathan Robert Landers</span>
+    </div>
+  </footer>
+</body>
+</html>
