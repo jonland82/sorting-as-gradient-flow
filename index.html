@@ -613,6 +613,26 @@
       font-size: 16px;
     }
 
+    .svg-math.green {
+      color: var(--green);
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .svg-math.cyan {
+      color: var(--cyan);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .svg-math.gold {
+      color: var(--gold);
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      font-weight: 800;
+      justify-content: flex-start;
+    }
+
     .footer {
       border-top: 1px solid var(--line);
       padding: 32px 0 42px;
@@ -867,14 +887,24 @@
                 <circle cx="398" cy="142" r="8" fill="#9adf8f"/>
                 <circle cx="356" cy="276" r="6" fill="#c7d0ca"/>
                 <circle cx="216" cy="300" r="6" fill="#c7d0ca"/>
-                <text x="70" y="252">(3,2,1)</text>
-                <text x="372" y="118" fill="#9adf8f">v_s</text>
-                <text x="24" y="76" fill="#e8c46f" font-size="24">comparison half-spaces</text>
-                <text x="214" y="190" fill="#72d7d1" font-size="24">x' = v_s - x</text>
               </g>
               <g>
-                <rect x="230" y="242" width="270" height="58" rx="8" fill="rgba(5,7,10,.58)" stroke="rgba(232,238,232,.18)"/>
-                <text x="248" y="278" fill="#e8eee8" font-size="24" font-weight="750" font-family="Georgia, serif">V(x)=1/2||x-v_s||^2</text>
+                <foreignObject x="58" y="228" width="116" height="38">
+                  <div xmlns="http://www.w3.org/1999/xhtml" class="svg-math large">\( (3,2,1) \)</div>
+                </foreignObject>
+                <foreignObject x="360" y="96" width="80" height="34">
+                  <div xmlns="http://www.w3.org/1999/xhtml" class="svg-math green">\( v_s \)</div>
+                </foreignObject>
+                <foreignObject x="18" y="52" width="260" height="38">
+                  <div xmlns="http://www.w3.org/1999/xhtml" class="svg-math gold">comparison half-spaces</div>
+                </foreignObject>
+                <foreignObject x="212" y="166" width="170" height="38">
+                  <div xmlns="http://www.w3.org/1999/xhtml" class="svg-math cyan">\( \dot{x}=v_s-x \)</div>
+                </foreignObject>
+                <rect x="190" y="258" width="284" height="54" rx="8" fill="rgba(5,7,10,.64)" stroke="rgba(232,238,232,.18)"/>
+                <foreignObject x="206" y="267" width="252" height="38">
+                  <div xmlns="http://www.w3.org/1999/xhtml" class="svg-math large">\( V(x)=\frac{1}{2}\|x-v_s\|^2 \)</div>
+                </foreignObject>
               </g>
             </svg>
             <div class="graphic-caption">
