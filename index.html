@@ -549,11 +549,15 @@
       gap: 10px;
       margin-top: 20px;
       color: #eff7f1;
-      font-size: 13px;
+      font-size: 15px;
     }
 
     .formula-list div {
-      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 64px;
+      padding: 12px 14px;
       border: 1px solid rgba(232, 238, 232, 0.12);
       border-radius: 8px;
       background: rgba(5, 7, 10, 0.36);
@@ -562,6 +566,13 @@
 
     .formula-list mjx-container {
       margin: 0;
+      font-size: 112% !important;
+      min-width: max-content;
+    }
+
+    .formula-list mjx-container[jax="SVG"][display="true"] {
+      display: inline-block;
+      text-align: center;
     }
 
     .entropy-graphic {
