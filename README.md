@@ -2,7 +2,7 @@
 
 Jonathan Robert Landers, 2026
 
-This repository accompanies the updated LaTeX manuscript **Sorting as Gradient Flow on the Permutohedron**. The paper reframes comparison sorting as motion through the permutohedron: adjacent swaps move along the 1-skeleton, comparison outcomes carve the feasible vertex set by half-space constraints, and a continuous ambient gradient flow gives a benchmark for contraction toward the sorted rank word.
+This repository accompanies the updated LaTeX manuscript **Sorting as Gradient Flow on the Permutohedron**. The paper's main innovation is a continuous-time formulation of sorting as an ambient gradient flow on the permutohedron, placed alongside the discrete geometries induced by sorting operations themselves: adjacent swaps move along the 1-skeleton, comparison outcomes carve the feasible vertex set by half-space constraints, and the Euclidean flow gives a smooth benchmark for contraction toward the sorted rank word.
 
 ## Project Page
 
@@ -10,7 +10,7 @@ Live project page: <https://jonland82.github.io/sorting-as-gradient-flow/>
 
 Code repository: <https://github.com/jonland82/sorting-as-gradient-flow>
 
-The GitHub Pages entry point is [`index.html`](index.html). It gives an intuitive project-page version of the paper: the decision-tree lower bound supplies the information scale, the permutohedron supplies the geometry, and the gradient-flow model supplies a continuous relaxation that makes contraction visible.
+The GitHub Pages entry point is [`index.html`](index.html). It gives an intuitive project-page version of the paper: the decision-tree lower bound supplies the information scale, the permutohedron supplies the geometry, and the paper's ambient gradient-flow formulation supplies the continuous relaxation that makes contraction visible.
 
 ## Current Manuscripts
 
@@ -102,7 +102,7 @@ $$
 \|x(t)-v_s\|^2 = \|x(0)-v_s\|^2 e^{-2t}.
 $$
 
-This is not claimed to be the literal path of a discrete sorting algorithm. It is a relaxation that puts local walks, global comparison constraints, and smooth rank-displacement contraction inside one frame. If comparison information is normalized per element, one binary comparison advances the macroscopic clock by
+This is the manuscript's central modeling move. It is not claimed to be the literal path of a discrete sorting algorithm; it is a relaxation that puts local walks, global comparison constraints, and smooth rank-displacement contraction inside one frame. If comparison information is normalized per element, one binary comparison advances the macroscopic clock by
 
 $$
 \frac{1}{n},

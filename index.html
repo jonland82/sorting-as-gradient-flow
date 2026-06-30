@@ -782,7 +782,7 @@
         </div>
         <h1 id="hero-title">Sorting as Gradient Flow on the Permutohedron</h1>
         <p class="subtitle">
-          A geometric and dynamical model of comparison sorting. The paper starts from the decision-tree lower bound, moves into rank words on the permutohedron, and then uses an ambient gradient flow to show what comparison information is organizing: contraction of disorder inside a structured permutation space.
+          A geometric and dynamical model of comparison sorting. The paper's main innovation is a continuous-time formulation of sorting as an ambient gradient flow on the permutohedron, set beside adjacent-swap paths and comparison half-spaces to show what comparison information is organizing: contraction of disorder inside a structured permutation space.
         </p>
         <div class="actions" aria-label="Project links">
           <a class="button primary" href="sorting_as_gradient_flow.pdf">Read PDF</a>
@@ -844,7 +844,7 @@
       <div class="section-head">
         <h2 id="flow-title">The Gradient-Flow Benchmark</h2>
         <p class="lead">
-          The continuous model is deliberately a relaxation. It does not say that MergeSort or QuickSort follows a Euclidean trajectory. It gives a precise contraction law for rank displacement, then compares that macroscopic clock with the information supplied by discrete comparisons.
+          This is the central modeling move of the manuscript. The continuous model is deliberately a relaxation: it does not say that MergeSort or QuickSort follows a Euclidean trajectory. It gives a precise contraction law for rank displacement, then compares that macroscopic clock with the information supplied by discrete comparisons.
         </p>
       </div>
       <div class="equation-band">
@@ -873,7 +873,7 @@
       <div class="section-head">
         <h2 id="papers-title">Current Project Materials</h2>
         <p class="lead">
-          The updated LaTeX manuscript and the new Python figure script now live at the repository root. The paper's narrative is not that geometry replaces the classical proof, but that the proof has a visible geometry: factorial search is reduced by comparison constraints that collapse rank-word uncertainty.
+          The updated LaTeX manuscript and the new Python figure script now live at the repository root. The paper's main contribution is not to replace the classical proof, but to place it inside a visible geometry: adjacent swaps walk the polytope, comparisons collapse rank-word uncertainty, and ambient gradient flow supplies the contraction benchmark.
         </p>
       </div>
       <div class="papers">
