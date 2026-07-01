@@ -63,7 +63,7 @@ $$
 be the sorted rank word. The permutohedron is
 
 $$
-\mathcal P_n = \operatorname{conv}\{\pi(v_s): \pi \in S_n\}.
+\mathcal P_n = \mathrm{conv}\{\pi(v_s): \pi \in S_n\}.
 $$
 
 Its vertices are rank words. Adjacent transpositions are edges of the 1-skeleton, so adjacent-swap algorithms move locally from vertex to vertex. That local geometry resolves inversions one at a time and naturally gives the quadratic regime.
