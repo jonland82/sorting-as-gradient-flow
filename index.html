@@ -753,6 +753,41 @@
         justify-content: center;
         width: 100%;
       }
+
+      /* The detailed diagrams rely on fixed SVG coordinates and MathJax labels.
+         On narrow phones, use compact color fields instead of squeezing those
+         layers until they collide. The linked cards remain fully clickable. */
+      .flow-visual {
+        min-height: 170px;
+        background:
+          radial-gradient(circle at 78% 24%, rgba(154, 223, 143, 0.42), transparent 34%),
+          radial-gradient(circle at 20% 78%, rgba(216, 142, 142, 0.28), transparent 38%),
+          linear-gradient(135deg, #111820 0%, rgba(114, 215, 209, 0.34) 52%, rgba(154, 223, 143, 0.18) 100%);
+      }
+
+      .flow-visual > * {
+        display: none;
+      }
+
+      .paper-graphic {
+        min-height: 190px;
+        aspect-ratio: 16 / 9;
+        background:
+          radial-gradient(circle at 24% 26%, rgba(114, 215, 209, 0.46), transparent 38%),
+          radial-gradient(circle at 80% 76%, rgba(154, 223, 143, 0.34), transparent 40%),
+          linear-gradient(135deg, rgba(216, 142, 142, 0.18), rgba(9, 14, 18, 0.96) 48%, rgba(232, 196, 111, 0.16));
+      }
+
+      .paper-graphic svg,
+      .paper-graphic .graphic-caption {
+        display: none;
+      }
+
+      .sorting-graphic,
+      .entropy-graphic {
+        min-height: 190px;
+        padding: 0;
+      }
     }
   </style>
 </head>
