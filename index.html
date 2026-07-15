@@ -817,7 +817,7 @@
         </div>
         <h1 id="hero-title">Sorting as Gradient Flow on the Permutohedron</h1>
         <p class="subtitle">
-          A geometric and dynamical model of comparison sorting. The paper's main innovation is a continuous-time formulation of sorting as an ambient gradient flow on the permutohedron, set beside adjacent-swap paths and comparison half-spaces to show what comparison information is organizing: contraction of disorder inside a structured permutation space.
+          A geometric and dynamical model of comparison sorting. The paper's main innovation is a continuous-time formulation of sorting as an ambient gradient flow on the permutohedron, set beside adjacent-swap paths and comparison half-spaces. Comparisons remove informational ambiguity, while the flow removes metric distance; the two processes are complementary rather than literally the same dynamics.
         </p>
         <div class="actions" aria-label="Project links">
           <a class="button primary" href="sorting_as_gradient_flow.pdf">Read PDF</a>
@@ -844,7 +844,7 @@
         </div>
         <div class="metric">
           <strong>\(\Theta(\log n)\)</strong>
-          <span>entropy-normalized contraction time for the ambient flow</span>
+          <span>ambient contraction time, matching comparison count normalized by \(n\)</span>
         </div>
       </div>
     </section>
@@ -870,7 +870,7 @@
         <article class="story-card">
           <span class="step">3</span>
           <h3>Comparison Half-Spaces</h3>
-          <p>A comparison between current positions \(a,b\) becomes a rank-word inequality such as \(x_a \lt x_b\). Each outcome selects a half-space, shrinking the feasible rank words until one vertex remains.</p>
+          <p>If current positions \(a,b\) contain original items \(p_t(a),p_t(b)\), a comparison outcome is recorded in fixed original-item coordinates, for example \(r_{p_t(a)} \lt r_{p_t(b)}\). Each half-space shrinks the feasible candidate rank maps until one vertex remains.</p>
         </article>
       </div>
     </section>
@@ -887,8 +887,8 @@
           <div class="math-line">$$V(x)=\frac{1}{2}\|x-v_s\|^2$$</div>
           <div class="math-line">$$\dot{x}(t)=-\nabla V(x(t))=v_s-x(t)$$</div>
           <div class="math-line">$$\|x(t)-v_s\|^2=\|x(0)-v_s\|^2e^{-2t}$$</div>
-          <div class="math-line">$$\dot{x}(t)=\Pi_{T_{K(C)}(x(t))}\bigl(-\nabla V(x(t))\bigr)$$</div>
-          <span class="math-note">The last line is the projected version after comparison outcomes define a feasible convex region \(K(C)\). Projection encodes the active comparison constraints while the potential still measures remaining displacement from the sorted rank word.</span>
+          <div class="math-line">$$v_s-x\in T_K(x),\qquad \Pi_{T_K(x)}(v_s-x)=v_s-x\quad(v_s\in K)$$</div>
+          <span class="math-note">For a closed convex metric constraint \(K\) containing the sorted vertex, projection is inactive and the projected flow agrees with the ambient flow. Comparison half-spaces describe information reduction; they do not automatically become boundaries of the metric trajectory.</span>
         </div>
         <div class="flow-visual" aria-label="Stylized rank-word flow diagram">
           <div class="edge-line" aria-hidden="true"></div>
@@ -898,7 +898,7 @@
           <span class="node c" aria-hidden="true"></span>
           <span class="node d" aria-hidden="true"></span>
           <span class="visual-label start">\(x(0)\)</span>
-          <span class="visual-label mid">half-space cuts</span>
+          <span class="visual-label mid">information cuts</span>
           <span class="visual-label end">\(v_s\)</span>
         </div>
       </div>
@@ -982,7 +982,7 @@
         <div class="side-stack">
           <article class="mini-card">
             <strong>Figure generation</strong>
-            <p>The Python script generates the decision tree, permutohedron views, feasible-set pruning sequence, and gradient-flow figures used to move from discrete comparisons to continuous contraction.</p>
+            <p>The Python script generates the decision tree, permutohedron views, feasible-set pruning sequence, and gradient-flow figures used to contrast discrete comparison information with continuous metric contraction.</p>
             <div class="actions">
               <a class="button" href="sorting-as-gradient-flow_paper-figures.py">Open Script</a>
             </div>

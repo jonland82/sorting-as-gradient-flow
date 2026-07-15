@@ -2,7 +2,7 @@
 
 Jonathan Robert Landers, 2026
 
-This repository accompanies the updated LaTeX manuscript **Sorting as Gradient Flow on the Permutohedron**. The paper's main innovation is a continuous-time formulation of sorting as an ambient gradient flow on the permutohedron, placed alongside the discrete geometries induced by sorting operations themselves: adjacent swaps move along the 1-skeleton, comparison outcomes carve the feasible vertex set by half-space constraints, and the Euclidean flow gives a smooth benchmark for contraction toward the sorted rank word.
+This repository accompanies the updated LaTeX manuscript **Sorting as Gradient Flow on the Permutohedron**. The paper's main innovation is a continuous-time formulation of sorting as an ambient gradient flow on the permutohedron, placed alongside the discrete geometries induced by sorting operations themselves: adjacent swaps move along the 1-skeleton, comparison outcomes recorded in original-item coordinates carve the feasible vertex set by half-space constraints, and the Euclidean flow gives a smooth benchmark for contraction toward the sorted rank word.
 
 ## Project Page
 
@@ -68,13 +68,13 @@ $$
 
 Its vertices are rank words. Adjacent transpositions are edges of the 1-skeleton, so adjacent-swap algorithms move locally from vertex to vertex. That local geometry resolves inversions one at a time and naturally gives the quadratic regime.
 
-General comparisons act differently. A comparison outcome between two current positions becomes a rank-word inequality such as
+General comparisons act differently. Comparisons occur between current positions, but their outcomes must be recorded in a common coordinate frame. If positions $a$ and $b$ contain original items $p_t(a)$ and $p_t(b)$, a less-than outcome becomes the candidate-rank inequality
 
 $$
-x_a < x_b.
+r_{p_t(a)} < r_{p_t(b)}.
 $$
 
-Each outcome selects a half-space. A sorting algorithm therefore does not merely walk the polytope; it repeatedly cuts the feasible rank words until one vertex remains. This is the geometric version of the decision-tree story: comparison information collapses the feasible set.
+Each outcome selects a half-space in fixed original-item coordinates. A sorting algorithm therefore does not merely walk the polytope; it repeatedly cuts the feasible candidate rank maps until one vertex remains. This is the geometric version of the decision-tree story: comparison information collapses the feasible set.
 
 ## Gradient-Flow Relaxation
 
@@ -120,20 +120,21 @@ $$
 \Theta(n \log n).
 $$
 
-The constrained version uses the feasible convex set determined by comparison half-spaces. If
+The updated manuscript also clarifies the relation between constraint geometry and the ambient flow. If a closed convex metric constraint
 
 $$
-K(C)
+K \subseteq \mathcal P_n
 $$
 
-is the closed feasible region associated to a collection of comparison outcomes, the projected flow has the form
+contains the sorted vertex $v_s$, then for every $x\in K$ the descent direction already lies in the tangent cone and projection is inactive:
 
 $$
-\dot{x}(t) =
-\Pi_{T_{K(C)}(x(t))}\bigl(-\nabla V(x(t))\bigr),
+v_s-x\in T_K(x),
+\qquad
+\Pi_{T_K(x)}(v_s-x)=v_s-x.
 $$
 
-where the vector field is projected onto the tangent cone of the feasible region. This makes the role of constraints explicit: comparisons organize the feasible geometry, while the potential measures remaining displacement from sorted order.
+Thus the projected flow agrees with the ambient flow whenever the target remains feasible. Comparison half-spaces should be read as describing information reduction, while the Euclidean flow separately measures metric contraction. If a metric constraint excludes $v_s$, constrained descent instead approaches the point in that region nearest to $v_s$.
 
 ## Future Direction: Flattening Entropy
 
