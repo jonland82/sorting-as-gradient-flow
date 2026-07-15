@@ -839,8 +839,8 @@
           <span>local adjacent-swap regime on the 1-skeleton</span>
         </div>
         <div class="metric">
-          <strong>\(\Theta(\log n)\)</strong>
-          <span>ambient contraction time, matching comparison count normalized by \(n\)</span>
+          <strong>\(\tau=\Theta(\log n)\)</strong>
+          <span>per-item clock \(\tau=m/n\), hence \(m=\Theta(n\log n)\)</span>
         </div>
       </div>
     </section>
@@ -875,7 +875,7 @@
       <div class="section-head">
         <h2 id="flow-title">The Gradient-Flow Benchmark</h2>
         <p class="lead">
-          This is the central modeling move of the manuscript. The continuous model is deliberately a relaxation: it does not say that MergeSort or QuickSort follows a Euclidean trajectory. It gives a precise contraction law for rank displacement, then compares that macroscopic clock with the information supplied by discrete comparisons.
+          This is the central modeling move of the manuscript. The continuous model is deliberately a relaxation: it does not say that MergeSort or QuickSort follows a Euclidean trajectory. Its \(t=\Theta(\log n)\) contraction scale corresponds, under the per-item clock \(\tau=m/n\), to the optimal \(m=\Theta(n\log n)\) comparison scale fixed by the decision-tree bound.
         </p>
       </div>
       <div class="equation-band">
@@ -911,7 +911,7 @@
         <article class="paper-card">
           <div class="paper-copy">
             <h3>Updated Sorting Manuscript</h3>
-            <p>The canonical paper develops the decision-tree lower bound, defines rank words on \(\mathcal P_n\), contrasts local adjacent-swap walks with global comparison half-space pruning, and derives the straight-line ambient contraction law for the potential \(V(x)\).</p>
+            <p>The canonical paper develops the decision-tree lower bound, defines rank words on \(\mathcal P_n\), contrasts local adjacent-swap walks with global comparison half-space pruning, derives the straight-line ambient contraction law for \(V(x)\), and relates its logarithmic threshold to optimal comparison sorting through \(\tau=m/n\).</p>
             <div class="actions">
               <a class="button primary" href="sorting_as_gradient_flow.pdf">Open Manuscript</a>
             </div>

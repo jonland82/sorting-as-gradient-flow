@@ -102,23 +102,25 @@ $$
 \|x(t)-v_s\|^2 = \|x(0)-v_s\|^2 e^{-2t}.
 $$
 
-This is the manuscript's central modeling move. It is not claimed to be the literal path of a discrete sorting algorithm; it is a relaxation that puts local walks, global comparison constraints, and straight-line rank-displacement contraction inside one frame. If comparison information is normalized per element, one binary comparison advances the macroscopic clock by
+This is the manuscript's central modeling move. It is not claimed to be the literal path of a discrete sorting algorithm; it is a relaxation that puts local walks, global comparison constraints, and straight-line rank-displacement contraction inside one frame. If $m$ denotes the number of comparisons, the manuscript defines the per-item comparison clock
 
 $$
-\frac{1}{n},
+\tau=\frac{m}{n}.
 $$
 
-so the continuous threshold time
+One binary comparison advances $\tau$ by $1/n$. On this normalization, the continuous threshold time
 
 $$
-\Theta(\log n)
+t=\Theta(\log n)
 $$
 
-corresponds to the classical comparison scale
+corresponds to $\tau=\Theta(\log n)$ and therefore to the optimal comparison scale
 
 $$
-\Theta(n \log n).
+m=\Theta(n \log n),
 $$
+
+The rigorous lower-bound proof remains the classical decision-tree argument; the flow supplies a compatible asymptotic scale.
 
 The updated manuscript also clarifies the relation between constraint geometry and the ambient flow. If a closed convex metric constraint
 
