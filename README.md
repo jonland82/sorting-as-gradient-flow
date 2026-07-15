@@ -2,7 +2,7 @@
 
 Jonathan Robert Landers, 2026
 
-This repository accompanies the updated LaTeX manuscript **Sorting as Gradient Flow on the Permutohedron**. The paper's main innovation is a continuous-time formulation of sorting as an ambient gradient flow on the permutohedron, placed alongside the discrete geometries induced by sorting operations themselves: adjacent swaps move along the 1-skeleton, comparison outcomes recorded in original-item coordinates carve the feasible vertex set by half-space constraints, and the Euclidean flow gives a smooth benchmark for contraction toward the sorted rank word.
+This repository accompanies the updated LaTeX manuscript **Sorting as Gradient Flow on the Permutohedron**. The paper's main innovation is a continuous-time formulation of sorting as an ambient gradient flow on the permutohedron, placed alongside the discrete geometries induced by sorting operations themselves: adjacent swaps traverse edges and pay inversion distance one step at a time, arbitrary comparisons impose global half-space constraints on candidate rank maps, and the Euclidean flow follows straight-line contraction inside the convex permutohedron.
 
 ## Project Page
 
@@ -102,7 +102,7 @@ $$
 \|x(t)-v_s\|^2 = \|x(0)-v_s\|^2 e^{-2t}.
 $$
 
-This is the manuscript's central modeling move. It is not claimed to be the literal path of a discrete sorting algorithm; it is a relaxation that puts local walks, global comparison constraints, and smooth rank-displacement contraction inside one frame. If comparison information is normalized per element, one binary comparison advances the macroscopic clock by
+This is the manuscript's central modeling move. It is not claimed to be the literal path of a discrete sorting algorithm; it is a relaxation that puts local walks, global comparison constraints, and straight-line rank-displacement contraction inside one frame. If comparison information is normalized per element, one binary comparison advances the macroscopic clock by
 
 $$
 \frac{1}{n},

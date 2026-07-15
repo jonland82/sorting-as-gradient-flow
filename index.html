@@ -853,7 +853,7 @@
       <div class="section-head">
         <h2 id="story-title">The Same Sorting Problem, Three Geometries</h2>
         <p class="lead">
-          The manuscript keeps the input values, original indices, rank words, and sorted index order separate. If \(v_s=(1,2,\ldots,n)\), the permutohedron \(\mathcal P_n=\mathrm{conv}\{\pi(v_s):\pi\in S_n\}\) becomes the common stage for local motion, global comparison cuts, and continuous relaxation.
+          The manuscript keeps the input values, original indices, rank words, and sorted index order separate. If \(v_s=(1,2,\ldots,n)\), the permutohedron \(\mathcal P_n=\mathrm{conv}\{\pi(v_s):\pi\in S_n\}\) becomes the common stage for local motion, global comparison cuts, and straight-line continuous relaxation.
         </p>
       </div>
       <div class="story-grid">
@@ -908,14 +908,14 @@
       <div class="section-head">
         <h2 id="papers-title">Current Project Materials</h2>
         <p class="lead">
-          The updated LaTeX manuscript and the new Python figure script now live at the repository root. The paper's main contribution is not to replace the classical proof, but to place it inside a visible geometry: adjacent swaps walk the polytope, comparisons collapse rank-word uncertainty, and ambient gradient flow supplies the contraction benchmark.
+          The updated LaTeX manuscript and the new Python figure script now live at the repository root. The paper's main contribution is not to replace the classical proof, but to place three distinct notions of progress in a common geometric space: adjacent swaps traverse edges locally, arbitrary comparisons impose global constraints on candidate rank maps, and ambient gradient flow follows straight-line contraction inside the polytope.
         </p>
       </div>
       <div class="papers">
         <article class="paper-card">
           <div class="paper-copy">
             <h3>Updated Sorting Manuscript</h3>
-            <p>The canonical paper develops the decision-tree lower bound, defines rank words on \(\mathcal P_n\), contrasts adjacent-swap walks with comparison half-space pruning, and derives the ambient contraction law for the potential \(V(x)\).</p>
+            <p>The canonical paper develops the decision-tree lower bound, defines rank words on \(\mathcal P_n\), contrasts local adjacent-swap walks with global comparison half-space pruning, and derives the straight-line ambient contraction law for the potential \(V(x)\).</p>
             <div class="actions">
               <a class="button primary" href="sorting_as_gradient_flow.pdf">Open Manuscript</a>
             </div>
@@ -923,7 +923,7 @@
           <a class="paper-graphic sorting-graphic" href="sorting_as_gradient_flow.pdf" aria-label="Open updated sorting manuscript PDF">
             <svg viewBox="0 0 520 360" role="img" aria-labelledby="sorting-graphic-title sorting-graphic-desc">
               <title id="sorting-graphic-title">Stylized permutohedron and gradient-flow diagram</title>
-              <desc id="sorting-graphic-desc">Rank-word vertices on a permutohedron with comparison cuts and a flow toward the sorted vertex.</desc>
+              <desc id="sorting-graphic-desc">Rank-word vertices on a permutohedron with global comparison cuts and straight-line ambient flow toward the sorted vertex.</desc>
               <defs>
                 <linearGradient id="flowGrad" x1="0%" y1="100%" x2="100%" y2="0%">
                   <stop offset="0%" stop-color="#d88e8e"/>
