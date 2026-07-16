@@ -2,7 +2,7 @@
 
 Jonathan Robert Landers, 2026
 
-This repository accompanies the updated LaTeX manuscript **Sorting as Gradient Flow on the Permutohedron**. The paper's main innovation is a continuous-time formulation of sorting as an ambient gradient flow on the permutohedron, placed alongside the discrete geometries induced by sorting operations themselves: adjacent swaps traverse edges and pay inversion distance one step at a time, arbitrary comparisons impose global half-space constraints on candidate rank maps, and the Euclidean flow follows straight-line contraction inside the convex permutohedron.
+This repository accompanies the updated LaTeX manuscript **Sorting as Gradient Flow on the Permutohedron**. The paper's main contribution is a continuous-time model of sorting as motion through space: a quadratic potential on the permutohedron whose ambient gradient flow contracts toward the fixed sorted vertex. This dynamical picture is set against adjacent-swap paths and comparison half-spaces as discrete geometric foils: comparisons remove informational ambiguity, while the flow removes metric distance.
 
 ## Project Page
 
@@ -66,7 +66,7 @@ $$
 \mathcal P_n = \mathrm{conv}\{\pi(v_s): \pi \in S_n\}.
 $$
 
-Its vertices are rank words. Adjacent transpositions are edges of the 1-skeleton, so adjacent-swap algorithms move locally from vertex to vertex. That local geometry resolves inversions one at a time and naturally gives the quadratic regime.
+Its vertices are rank words. Adjacent transpositions are edges of the 1-skeleton, so adjacent-swap algorithms move locally from vertex to vertex. That local geometry resolves inversions one at a time and naturally gives the quadratic regime. The same quadratic potential used by the continuous flow decreases strictly under every inversion-removing adjacent swap.
 
 General comparisons act differently. Comparisons occur between current positions, but their outcomes must be recorded in a common coordinate frame. If positions $a$ and $b$ contain original items $p_t(a)$ and $p_t(b)$, a less-than outcome becomes the candidate-rank inequality
 
@@ -119,6 +119,15 @@ corresponds to $\tau=\Theta(\log n)$ and therefore to the optimal comparison sca
 $$
 m=\Theta(n \log n),
 $$
+
+The revised manuscript also reads this scale directly from the polytope. The permutohedron has $\Theta(n)$ independent directions and diameter $\Theta(n^{3/2})$, so its worst-case relaxation time is $\Theta(\log n)$. Their geometric product satisfies
+
+$$
+\dim \mathcal P_n \cdot \log \operatorname{diam}\mathcal P_n
+= \Theta(n\log n)
+$$
+
+up to a constant factor.
 
 The rigorous lower-bound proof remains the classical decision-tree argument; the flow supplies a compatible asymptotic scale.
 

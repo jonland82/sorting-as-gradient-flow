@@ -811,7 +811,7 @@
         </div>
         <h1 id="hero-title">Sorting as Gradient Flow on the Permutohedron</h1>
         <p class="subtitle">
-          A geometric and dynamical model of comparison sorting. The paper's main innovation is a continuous-time formulation of sorting as an ambient gradient flow on the permutohedron, set beside adjacent-swap paths and comparison half-spaces. Comparisons remove informational ambiguity, while the flow removes metric distance; the two processes are complementary rather than literally the same dynamics.
+          A continuous-time model of sorting as motion through space: a quadratic potential on the permutohedron drives ambient contraction toward the sorted vertex, set against adjacent-swap paths and comparison half-spaces as discrete geometric foils. Comparisons remove informational ambiguity, while the flow removes metric distance; the permutohedron's dimension and logarithmic diameter together recover the geometric \(\Theta(n\log n)\) scale.
         </p>
         <div class="actions" aria-label="Project links">
           <a class="button primary" href="sorting_as_gradient_flow.pdf">Read PDF</a>
@@ -837,8 +837,8 @@
           <span>local adjacent-swap regime on the 1-skeleton</span>
         </div>
         <div class="metric">
-          <strong>\(\tau=\Theta(\log n)\)</strong>
-          <span>per-item clock \(\tau=m/n\), hence \(m=\Theta(n\log n)\)</span>
+          <strong>\(\dim\mathcal P_n\cdot\log\operatorname{diam}\mathcal P_n\)</strong>
+          <span>geometric \(\Theta(n\log n)\) scale from dimension and relaxation time</span>
         </div>
       </div>
     </section>
@@ -859,7 +859,7 @@
         <article class="story-card">
           <span class="step">2</span>
           <h3>Permutohedron</h3>
-          <p>Each vertex is a rank word. Adjacent transpositions form edges of the 1-skeleton, so local algorithms walk through neighboring vertices and pay for inversions one at a time.</p>
+          <p>Each vertex is a rank word. Adjacent transpositions form edges of the 1-skeleton, so local algorithms pay for inversions one at a time; the flow's quadratic potential decreases strictly under every inversion-removing adjacent swap.</p>
         </article>
         <article class="story-card">
           <span class="step">3</span>
@@ -873,7 +873,7 @@
       <div class="section-head">
         <h2 id="flow-title">The Gradient-Flow Benchmark</h2>
         <p class="lead">
-          This is the central modeling move of the manuscript. The continuous model is deliberately a relaxation: it does not say that MergeSort or QuickSort follows a Euclidean trajectory. Its \(t=\Theta(\log n)\) contraction scale corresponds, under the per-item clock \(\tau=m/n\), to the optimal \(m=\Theta(n\log n)\) comparison scale fixed by the decision-tree bound.
+          This is where the manuscript arrives: sorting rendered as continuous motion through space. The model is deliberately a relaxation, not the literal trajectory of MergeSort or QuickSort. Its worst-case \(t=\Theta(\log n)\) contraction time, combined with the permutohedron's \(\Theta(n)\) independent directions, gives a geometric \(\Theta(n\log n)\) scale; the normalized clock \(\tau=m/n\) supplies the complementary comparison interpretation.
         </p>
       </div>
       <div class="equation-band">
@@ -909,7 +909,7 @@
         <article class="paper-card">
           <div class="paper-copy">
             <h3>Updated Sorting Manuscript</h3>
-            <p>The canonical paper develops the decision-tree lower bound, defines rank words on \(\mathcal P_n\), contrasts local adjacent-swap walks with global comparison half-space pruning, derives the straight-line ambient contraction law for \(V(x)\), and relates its logarithmic threshold to optimal comparison sorting through \(\tau=m/n\).</p>
+            <p>The canonical paper develops the decision-tree lower bound, defines rank words on \(\mathcal P_n\), contrasts local adjacent-swap walks with global comparison half-space pruning, proves that the same potential descends along inversion-removing swaps, derives the straight-line ambient contraction law for \(V(x)\), and factors the geometric \(\Theta(n\log n)\) scale into dimension and logarithmic diameter.</p>
             <div class="actions">
               <a class="button primary" href="sorting_as_gradient_flow.pdf">Open Manuscript</a>
             </div>
