@@ -2,7 +2,7 @@
 
 Jonathan Robert Landers, 2026
 
-This repository accompanies the updated LaTeX manuscript **Sorting as Gradient Flow on the Permutohedron**. The paper's main contribution is a continuous-time model of sorting as motion through space: a quadratic potential on the permutohedron whose ambient gradient flow contracts toward the fixed sorted vertex. This dynamical picture is set against adjacent-swap paths and comparison half-spaces as discrete geometric foils: comparisons remove informational ambiguity, while the flow removes metric distance.
+This repository accompanies the updated LaTeX manuscript **Sorting as Gradient Flow on the Permutohedron**. The paper's main contribution is a continuous-time model of sorting as motion through space. A quadratic potential on the permutohedron generates an ambient gradient flow that contracts toward the fixed sorted vertex. This dynamical picture is set against adjacent-swap paths and comparison half-spaces as discrete geometric foils: comparisons remove informational ambiguity, while the flow removes metric distance.
 
 ## Project Page
 
@@ -25,6 +25,9 @@ The GitHub Pages entry point is [`index.html`](index.html). It gives an intuitiv
 - [`sorting-as-gradient-flow_paper-figures.py`](sorting-as-gradient-flow_paper-figures.py)
   Figure-generation script for the updated manuscript.
 
+- [`proof_verification_suite/`](proof_verification_suite/)
+  Reproducible checks for the paper's principal mathematical claims. The suite combines exact SymPy identities, exhaustive finite permutation tests, and deterministic numerical experiments for the flow and convex constraints.
+
 - [`old_draft/sorting-as-gradient-flow.pdf`](old_draft/sorting-as-gradient-flow.pdf)
   Earlier manuscript PDF snapshot retained for reference.
 
@@ -33,6 +36,19 @@ The GitHub Pages entry point is [`index.html`](index.html). It gives an intuitiv
 
 - [`old_draft/sorting-as-gradient-flow_paper-figures.ipynb`](old_draft/sorting-as-gradient-flow_paper-figures.ipynb)
   Earlier notebook version of the figure-generation workflow.
+
+## Proof Verification Suite
+
+Install the small scientific-Python dependency set and run every check from the repository root:
+
+```powershell
+python -m pip install -r proof_verification_suite/requirements.txt
+python proof_verification_suite/run_all.py
+```
+
+The suite checks the decision-tree bound, permutohedron affine geometry, fixed-coordinate comparison histories, adjacent-swap potential descent, the exact gradient-flow solution and contraction law, reverse-permutation distance and diameter, subset-sum constraints, braid hyperplanes, and target-feasible tangent-cone projection. See [`proof_verification_suite/README.md`](proof_verification_suite/README.md) for the claim-by-claim coverage table and commands for running individual scripts.
+
+Symbolic identities are checked exactly. Exhaustive permutation checks cover explicitly documented finite ranges, while numerical optimization checks use a fixed random seed and floating-point tolerances. Those numerical experiments are diagnostics rather than formal proofs in arbitrary dimension, and the suite preserves the manuscript's distinction between comparison information and metric flow.
 
 ## Mathematical Story
 
