@@ -25,9 +25,6 @@ The GitHub Pages entry point is [`index.html`](index.html). It gives an intuitiv
 - [`sorting-as-gradient-flow_paper-figures.py`](sorting-as-gradient-flow_paper-figures.py)
   Figure-generation script for the updated manuscript.
 
-- [`proof_verification_suite/`](proof_verification_suite/)
-  Reproducible checks for the paper's principal mathematical claims. The suite combines exact SymPy identities, exhaustive finite permutation tests, and deterministic numerical experiments for the flow and convex constraints.
-
 - [`old_draft/sorting-as-gradient-flow.pdf`](old_draft/sorting-as-gradient-flow.pdf)
   Earlier manuscript PDF snapshot retained for reference.
 
@@ -36,19 +33,6 @@ The GitHub Pages entry point is [`index.html`](index.html). It gives an intuitiv
 
 - [`old_draft/sorting-as-gradient-flow_paper-figures.ipynb`](old_draft/sorting-as-gradient-flow_paper-figures.ipynb)
   Earlier notebook version of the figure-generation workflow.
-
-## Proof Verification Suite
-
-Install the small scientific-Python dependency set and run every check from the repository root:
-
-```powershell
-python -m pip install -r proof_verification_suite/requirements.txt
-python proof_verification_suite/run_all.py
-```
-
-The suite checks the decision-tree bound, permutohedron affine geometry, fixed-coordinate comparison histories, adjacent-swap potential descent, the exact gradient-flow solution and contraction law, reverse-permutation distance and diameter, subset-sum constraints, braid hyperplanes, and target-feasible tangent-cone projection. See [`proof_verification_suite/README.md`](proof_verification_suite/README.md) for the claim-by-claim coverage table and commands for running individual scripts.
-
-Symbolic identities are checked exactly. Exhaustive permutation checks cover explicitly documented finite ranges, while numerical optimization checks use a fixed random seed and floating-point tolerances. Those numerical experiments are diagnostics rather than formal proofs in arbitrary dimension, and the suite preserves the manuscript's distinction between comparison information and metric flow.
 
 ## Mathematical Story
 
@@ -133,13 +117,13 @@ $$
 corresponds to $\tau=\Theta(\log n)$ and therefore to the optimal comparison scale
 
 $$
-m=\Theta(n \log n),
+m=\Theta(n \log n).
 $$
 
 The revised manuscript also reads this scale directly from the polytope. The permutohedron has $\Theta(n)$ independent directions and diameter $\Theta(n^{3/2})$, so its worst-case relaxation time is $\Theta(\log n)$. Their geometric product satisfies
 
 $$
-\dim \mathcal P_n \cdot \log \operatorname{diam}\mathcal P_n
+\mathrm{dim}(\mathcal P_n) \cdot \log(\mathrm{diam}(\mathcal P_n))
 = \Theta(n\log n)
 $$
 
@@ -199,3 +183,16 @@ Radix sorting appears as the iteration of this partial-flattening principle: eac
 ## Repository Status
 
 The updated manuscript, companion draft, figure script, README, and GitHub Pages entry point now live at the repository root. Earlier draft artifacts have been moved into [`old_draft/`](old_draft/).
+
+## Proof Verification Suite
+
+The supporting [`proof_verification_suite/`](proof_verification_suite/) provides reproducible checks for the paper's principal mathematical claims. Install its small scientific-Python dependency set and run every check from the repository root:
+
+```powershell
+python -m pip install -r proof_verification_suite/requirements.txt
+python proof_verification_suite/run_all.py
+```
+
+The suite checks the decision-tree bound, permutohedron affine geometry, fixed-coordinate comparison histories, adjacent-swap potential descent, the exact gradient-flow solution and contraction law, reverse-permutation distance and diameter, subset-sum constraints, braid hyperplanes, and target-feasible tangent-cone projection. See [`proof_verification_suite/README.md`](proof_verification_suite/README.md) for the claim-by-claim coverage table and commands for running individual scripts.
+
+Symbolic identities are checked exactly. Exhaustive permutation checks cover explicitly documented finite ranges, while numerical optimization checks use a fixed random seed and floating-point tolerances. Those numerical experiments are diagnostics rather than formal proofs in arbitrary dimension, and the suite preserves the manuscript's distinction between comparison information and metric flow.
