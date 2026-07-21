@@ -180,10 +180,6 @@ $$
 
 Radix sorting appears as the iteration of this partial-flattening principle: each ordered pass removes another layer of residual entropy until the comparison problem has been trivialized.
 
-## Repository Status
-
-The updated manuscript, companion draft, figure script, README, and GitHub Pages entry point now live at the repository root. Earlier draft artifacts have been moved into [`old_draft/`](old_draft/).
-
 ## Proof Verification Suite
 
 The supporting [`proof_verification_suite/`](proof_verification_suite/) provides reproducible checks for the paper's principal mathematical claims. Install its small scientific-Python dependency set and run every check from the repository root:
@@ -196,3 +192,7 @@ python proof_verification_suite/run_all.py
 The suite checks the decision-tree bound, permutohedron affine geometry, fixed-coordinate comparison histories, adjacent-swap potential descent, the exact gradient-flow solution and contraction law, reverse-permutation distance and diameter, subset-sum constraints, braid hyperplanes, and target-feasible tangent-cone projection. See [`proof_verification_suite/README.md`](proof_verification_suite/README.md) for the claim-by-claim coverage table and commands for running individual scripts.
 
 Symbolic identities are checked exactly. Exhaustive permutation checks cover explicitly documented finite ranges, while numerical optimization checks use a fixed random seed and floating-point tolerances. Those numerical experiments are diagnostics rather than formal proofs in arbitrary dimension, and the suite preserves the manuscript's distinction between comparison information and metric flow.
+
+## Repository Status
+
+Earlier draft materials are archived in [`old_draft/`](old_draft/).
