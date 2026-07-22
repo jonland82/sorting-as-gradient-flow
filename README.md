@@ -2,7 +2,35 @@
 
 Jonathan Robert Landers, 2026
 
-This repository accompanies the updated LaTeX manuscript **Sorting as Gradient Flow on the Permutohedron**. The paper's main contribution is a continuous-time model of sorting as motion through space. A quadratic potential on the permutohedron generates an ambient gradient flow that contracts toward the fixed sorted vertex. This dynamical picture is set against adjacent-swap paths and comparison half-spaces as discrete geometric foils: comparisons remove informational ambiguity, while the flow removes metric distance.
+This repository accompanies the LaTeX manuscript **Sorting as Gradient Flow on the Permutohedron**. The paper treats sorting as directed motion through permutation space: adjacent swaps walk along edges of the permutohedron, comparison half-spaces shrink the set of feasible order types, and a continuous flow moves directly toward the sorted vertex $v_s=(1,2,\ldots,n)$. Comparisons remove informational ambiguity, while the flow removes metric distance; these are complementary descriptions rather than the same process.
+
+The continuous model begins with a quadratic measure of rank displacement, whose ambient gradient points straight toward the sorted state:
+
+$$
+V(x)=\frac12\|x-v_s\|^2,
+\qquad
+\dot x=-\nabla V(x)=v_s-x.
+$$
+
+Solving this linear flow gives exact exponential contraction, so the farthest starting point determines the maximal time to reach a fixed Euclidean threshold $\varepsilon$:
+
+$$
+\|x(t)-v_s\|=\|x(0)-v_s\|e^{-t},
+\qquad
+t_{\max}(\varepsilon)
+=\log\frac{\operatorname{diam}(\mathcal P_n)}{\varepsilon}
+=\Theta(\log n).
+$$
+
+The permutohedron has $\dim(\mathcal P_n)=n-1$ independent directions, and multiplying this dimension by the relaxation time recovers the classical sorting scale; equivalently, if $C(n)$ is the optimal worst-case comparison count, then its per-item normalization has the same logarithmic order:
+
+$$
+\dim(\mathcal P_n)t_{\max}(\varepsilon)=\Theta(n\log n),
+\qquad
+\frac{C(n)}{n}=\Theta(\log n)=\Theta\!\left(t_{\max}(\varepsilon)\right).
+$$
+
+The decision-tree argument remains the computational proof that $C(n)=\Theta(n\log n)$; the flow independently produces the same scale from the permutohedron's dimension, diameter, and contraction law.
 
 ## Project Page
 
@@ -12,10 +40,10 @@ Code repository: <https://github.com/jonland82/sorting-as-gradient-flow>
 
 The GitHub Pages entry point is [`index.html`](index.html). It gives an intuitive project-page version of the paper: the decision-tree lower bound supplies the information scale, the permutohedron supplies the geometry, and the paper's ambient gradient-flow formulation supplies the continuous relaxation that makes contraction visible.
 
-## Current Manuscripts
+## Manuscripts
 
 - [`sorting_as_gradient_flow.pdf`](sorting_as_gradient_flow.pdf)
-  Current LaTeX manuscript. This is the canonical version for the repository.
+  LaTeX manuscript for the project.
 
 - [`flattening_entropy.pdf`](flattening_entropy.pdf)
   In-progress companion manuscript. It extends the sorting geometry story toward algorithms as geodesics and preprocessing as partial curvature or entropy removal.
@@ -23,16 +51,7 @@ The GitHub Pages entry point is [`index.html`](index.html). It gives an intuitiv
 ## Supporting Code
 
 - [`sorting-as-gradient-flow_paper-figures.py`](sorting-as-gradient-flow_paper-figures.py)
-  Figure-generation script for the updated manuscript.
-
-- [`old_draft/sorting-as-gradient-flow.pdf`](old_draft/sorting-as-gradient-flow.pdf)
-  Earlier manuscript PDF snapshot retained for reference.
-
-- [`old_draft/sorting-as-gradient-flow_proof-verifications.ipynb`](old_draft/sorting-as-gradient-flow_proof-verifications.ipynb)
-  Earlier proof-verification notebook retained for reference.
-
-- [`old_draft/sorting-as-gradient-flow_paper-figures.ipynb`](old_draft/sorting-as-gradient-flow_paper-figures.ipynb)
-  Earlier notebook version of the figure-generation workflow.
+  Figure-generation script for the manuscript.
 
 ## Mathematical Story
 
@@ -104,7 +123,7 @@ $$
 
 This is the manuscript's central modeling move. It is not claimed to be the literal path of a discrete sorting algorithm; it is a relaxation that puts local walks, global comparison constraints, and straight-line rank-displacement contraction inside one frame.
 
-For a Euclidean threshold $0<\varepsilon<\operatorname{diam}(\mathcal P_n)$, the manuscript now determines the exact worst-case relaxation time over the permutohedron:
+For a Euclidean threshold $0<\varepsilon<\operatorname{diam}(\mathcal P_n)$, the exact worst-case relaxation time over the permutohedron is
 
 $$
 t_{\max}(\varepsilon)
@@ -129,7 +148,7 @@ $$
 
 The classical bounds give $\tau(n)=\Theta(\log n)$, matching the asymptotic order of $t_{\max}(\varepsilon)$. This does not identify a unit of flow time with a sweep of comparisons: the rigorous lower-bound proof remains the classical decision-tree argument, while the flow supplies an independently derived geometric scale.
 
-The updated manuscript also clarifies the relation between constraint geometry and the ambient flow. If a closed convex metric constraint
+The relationship between constraint geometry and the ambient flow is especially simple. If a closed convex metric constraint
 
 $$
 K \subseteq \mathcal P_n
@@ -193,4 +212,4 @@ Symbolic identities are checked exactly. Exhaustive permutation checks cover exp
 
 ## Repository Status
 
-Earlier draft materials are archived in [`old_draft/`](old_draft/).
+Archived materials are in [`old_draft/`](old_draft/).

@@ -901,7 +901,7 @@
 
     <section id="papers" aria-labelledby="papers-title">
       <div class="section-head">
-        <h2 id="papers-title">Current Project Materials</h2>
+        <h2 id="papers-title">Project Materials</h2>
         <p class="lead">
           This project develops a geometric view of sorting on the permutohedron. Adjacent swaps trace local edge paths, arbitrary comparisons refine the feasible rank maps through half-space constraints, and a quadratic gradient flow contracts continuously toward the sorted vertex. Together, these viewpoints separate informational progress from metric contraction while placing both on the classical \(\Theta(n\log n)\) scale.
         </p>
@@ -909,13 +909,13 @@
       <div class="papers">
         <article class="paper-card">
           <div class="paper-copy">
-            <h3>Updated Sorting Manuscript</h3>
-            <p>The canonical paper develops the decision-tree lower bound, defines rank words on \(\mathcal P_n\), contrasts local adjacent-swap walks with global comparison half-space pruning, proves that the same potential descends along inversion-removing swaps, derives the straight-line ambient contraction law for \(V(x)\), determines the exact maximal fixed-threshold relaxation time, and factors it with dimension to obtain the intrinsic geometric \(\Theta(n\log n)\) scale.</p>
+            <h3>Sorting Manuscript</h3>
+            <p>The paper develops the decision-tree lower bound, defines rank words on \(\mathcal P_n\), contrasts local adjacent-swap walks with global comparison half-space pruning, proves that the same potential descends along inversion-removing swaps, derives the straight-line ambient contraction law for \(V(x)\), determines the exact maximal fixed-threshold relaxation time, and factors it with dimension to obtain the intrinsic geometric \(\Theta(n\log n)\) scale.</p>
             <div class="actions">
               <a class="button primary" href="sorting_as_gradient_flow.pdf">Open Manuscript</a>
             </div>
           </div>
-          <a class="paper-graphic sorting-graphic" href="sorting_as_gradient_flow.pdf" aria-label="Open updated sorting manuscript PDF">
+          <a class="paper-graphic sorting-graphic" href="sorting_as_gradient_flow.pdf" aria-label="Open sorting manuscript PDF">
             <svg viewBox="0 0 520 360" role="img" aria-labelledby="sorting-graphic-title sorting-graphic-desc">
               <title id="sorting-graphic-title">Stylized permutohedron and gradient-flow diagram</title>
               <desc id="sorting-graphic-desc">Rank-word vertices on a permutohedron with global comparison cuts and straight-line ambient flow toward the sorted vertex.</desc>
@@ -983,8 +983,11 @@
             </div>
           </article>
           <article class="mini-card">
-            <strong>Older reference files</strong>
-            <p>The original PDF, notebook figure workflow, and proof-verification notebook remain available for comparison with the updated LaTeX version.</p>
+            <strong>Proof verification</strong>
+            <p>The reproducible verification suite checks the paper's symbolic identities, finite combinatorial cases, and numerical geometry diagnostics.</p>
+            <div class="actions">
+              <a class="button" href="proof_verification_suite/README.md">Open Verification Guide</a>
+            </div>
           </article>
         </div>
       </div>
