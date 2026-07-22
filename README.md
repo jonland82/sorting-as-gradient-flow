@@ -18,7 +18,7 @@ $$
 \|x(t)-v_s\|=\|x(0)-v_s\|e^{-t},
 \qquad
 t_{\max}(\varepsilon)
-=\log\frac{\operatorname{diam}(\mathcal P_n)}{\varepsilon}
+=\log\frac{\mathrm{diam}(\mathcal P_n)}{\varepsilon}
 =\Theta(\log n).
 $$
 
@@ -123,11 +123,11 @@ $$
 
 This is the manuscript's central modeling move. It is not claimed to be the literal path of a discrete sorting algorithm; it is a relaxation that puts local walks, global comparison constraints, and straight-line rank-displacement contraction inside one frame.
 
-For a Euclidean threshold $0<\varepsilon<\operatorname{diam}(\mathcal P_n)$, the exact worst-case relaxation time over the permutohedron is
+For a Euclidean threshold $0<\varepsilon<\mathrm{diam}(\mathcal P_n)$, the exact worst-case relaxation time over the permutohedron is
 
 $$
 t_{\max}(\varepsilon)
-= \log\frac{\operatorname{diam}(\mathcal P_n)}{\varepsilon}
+= \log\frac{\mathrm{diam}(\mathcal P_n)}{\varepsilon}
 = \frac{1}{2}\log\frac{n(n^2-1)}{3\varepsilon^2}.
 $$
 
@@ -138,7 +138,7 @@ $$
 = \Theta(n\log n).
 $$
 
-Equivalently, $\dim(\mathcal P_n)\log\operatorname{diam}(\mathcal P_n)=\Theta(n\log n)$. This factorization is intrinsic to the polytope and its quadratic relaxation.
+Equivalently, $\dim(\mathcal P_n)\log\mathrm{diam}(\mathcal P_n)=\Theta(n\log n)$. This factorization is intrinsic to the polytope and its quadratic relaxation.
 
 To compare it with classical sorting, let $C(n)$ be the optimal worst-case number of comparisons and define the normalized comparison clock
 
