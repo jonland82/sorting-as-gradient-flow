@@ -102,34 +102,32 @@ $$
 \|x(t)-v_s\|^2 = \|x(0)-v_s\|^2 e^{-2t}.
 $$
 
-This is the manuscript's central modeling move. It is not claimed to be the literal path of a discrete sorting algorithm; it is a relaxation that puts local walks, global comparison constraints, and straight-line rank-displacement contraction inside one frame. If $m$ denotes the number of comparisons, the manuscript defines the per-item comparison clock
+This is the manuscript's central modeling move. It is not claimed to be the literal path of a discrete sorting algorithm; it is a relaxation that puts local walks, global comparison constraints, and straight-line rank-displacement contraction inside one frame.
+
+For a Euclidean threshold $0<\varepsilon<\operatorname{diam}(\mathcal P_n)$, the manuscript now determines the exact worst-case relaxation time over the permutohedron:
 
 $$
-\tau=\frac{m}{n}.
+t_{\max}(\varepsilon)
+= \log\frac{\operatorname{diam}(\mathcal P_n)}{\varepsilon}
+= \frac{1}{2}\log\frac{n(n^2-1)}{3\varepsilon^2}.
 $$
 
-One binary comparison advances $\tau$ by $1/n$. On this normalization, the continuous threshold time
+For every fixed $\varepsilon>0$, this gives
 
 $$
-t=\Theta(\log n)
+\dim(\mathcal P_n)\,t_{\max}(\varepsilon)
+= \Theta(n\log n).
 $$
 
-corresponds to $\tau=\Theta(\log n)$ and therefore to the optimal comparison scale
+Equivalently, $\dim(\mathcal P_n)\log\operatorname{diam}(\mathcal P_n)=\Theta(n\log n)$. This factorization is intrinsic to the polytope and its quadratic relaxation.
+
+To compare it with classical sorting, let $C(n)$ be the optimal worst-case number of comparisons and define the normalized comparison clock
 
 $$
-m=\Theta(n \log n).
+\tau(n)=\frac{C(n)}{n}.
 $$
 
-The revised manuscript also reads this scale directly from the polytope. The permutohedron has $\Theta(n)$ independent directions and diameter $\Theta(n^{3/2})$, so its worst-case relaxation time is $\Theta(\log n)$. Their geometric product satisfies
-
-$$
-\mathrm{dim}(\mathcal P_n) \cdot \log(\mathrm{diam}(\mathcal P_n))
-= \Theta(n\log n)
-$$
-
-up to a constant factor.
-
-The rigorous lower-bound proof remains the classical decision-tree argument; the flow supplies a compatible asymptotic scale.
+The classical bounds give $\tau(n)=\Theta(\log n)$, matching the asymptotic order of $t_{\max}(\varepsilon)$. This does not identify a unit of flow time with a sweep of comparisons: the rigorous lower-bound proof remains the classical decision-tree argument, while the flow supplies an independently derived geometric scale.
 
 The updated manuscript also clarifies the relation between constraint geometry and the ambient flow. If a closed convex metric constraint
 

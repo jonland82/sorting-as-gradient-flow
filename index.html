@@ -811,7 +811,7 @@
         </div>
         <h1 id="hero-title">Sorting as Gradient Flow on the Permutohedron</h1>
         <p class="subtitle">
-          A continuous-time model of sorting as motion through space. A quadratic potential on the permutohedron generates an ambient gradient flow that contracts toward the sorted vertex, set against adjacent-swap paths and comparison half-spaces as discrete geometric foils. Comparisons remove informational ambiguity, while the flow removes metric distance; the permutohedron's dimension and logarithmic diameter together recover the geometric \(\Theta(n\log n)\) scale.
+          A continuous-time model of sorting as motion through space. A quadratic potential on the permutohedron generates an ambient gradient flow that contracts toward the sorted vertex, set against adjacent-swap paths and comparison half-spaces as discrete geometric foils. Comparisons remove informational ambiguity, while the flow removes metric distance; the exact maximal fixed-threshold relaxation time and the permutohedron's dimension together give an intrinsic geometric \(\Theta(n\log n)\) scale.
         </p>
         <div class="actions" aria-label="Project links">
           <a class="button primary" href="sorting_as_gradient_flow.pdf">Read PDF</a>
@@ -837,8 +837,8 @@
           <span>local adjacent-swap regime on the 1-skeleton</span>
         </div>
         <div class="metric">
-          <strong>\(\dim\mathcal P_n\cdot\log\operatorname{diam}\mathcal P_n\)</strong>
-          <span>geometric \(\Theta(n\log n)\) scale from dimension and relaxation time</span>
+          <strong>\(\dim\mathcal P_n\cdot t_{\max}(\varepsilon)\)</strong>
+          <span>exact dimension&ndash;relaxation factorization with \(\Theta(n\log n)\) scale</span>
         </div>
       </div>
     </section>
@@ -873,7 +873,7 @@
       <div class="section-head">
         <h2 id="flow-title">The Gradient-Flow Benchmark</h2>
         <p class="lead">
-          Starting from a fixed target, the manuscript gives the ambient gradient flow in closed form and quantifies its contraction time. The model is deliberately a relaxation, not the literal trajectory of MergeSort or QuickSort. Its worst-case \(t=\Theta(\log n)\) contraction time, combined with the permutohedron's \(\Theta(n)\) independent directions, gives a geometric \(\Theta(n\log n)\) scale; the normalized clock \(\tau=m/n\) supplies the complementary comparison interpretation.
+          Starting from a fixed target, the manuscript gives the ambient gradient flow in closed form and determines its exact maximal time to a fixed Euclidean threshold. The model is deliberately a relaxation, not the literal trajectory of MergeSort or QuickSort. Multiplying \(t_{\max}(\varepsilon)=\Theta(\log n)\) by the permutohedron's dimension gives an intrinsic geometric \(\Theta(n\log n)\) scale; if \(C(n)\) is the optimal worst-case comparison count, the normalized clock \(\tau(n)=C(n)/n\) has the same logarithmic order without asserting a literal time conversion.
         </p>
       </div>
       <div class="equation-band">
@@ -881,6 +881,7 @@
           <div class="math-line">$$V(x)=\frac{1}{2}\|x-v_s\|^2$$</div>
           <div class="math-line">$$\dot{x}(t)=-\nabla V(x(t))=v_s-x(t)$$</div>
           <div class="math-line">$$\|x(t)-v_s\|^2=\|x(0)-v_s\|^2e^{-2t}$$</div>
+          <div class="math-line">$$t_{\max}(\varepsilon)=\log\frac{\operatorname{diam}(\mathcal P_n)}{\varepsilon}=\frac{1}{2}\log\frac{n(n^2-1)}{3\varepsilon^2}$$</div>
           <div class="math-line">$$v_s-x\in T_K(x),\qquad \Pi_{T_K(x)}(v_s-x)=v_s-x\quad(v_s\in K)$$</div>
           <span class="math-note">For a closed convex metric constraint \(K\) containing the sorted vertex, projection is inactive and the projected flow agrees with the ambient flow. Comparison half-spaces describe information reduction; they do not automatically become boundaries of the metric trajectory.</span>
         </div>
@@ -909,7 +910,7 @@
         <article class="paper-card">
           <div class="paper-copy">
             <h3>Updated Sorting Manuscript</h3>
-            <p>The canonical paper develops the decision-tree lower bound, defines rank words on \(\mathcal P_n\), contrasts local adjacent-swap walks with global comparison half-space pruning, proves that the same potential descends along inversion-removing swaps, derives the straight-line ambient contraction law for \(V(x)\), and factors the geometric \(\Theta(n\log n)\) scale into dimension and logarithmic diameter.</p>
+            <p>The canonical paper develops the decision-tree lower bound, defines rank words on \(\mathcal P_n\), contrasts local adjacent-swap walks with global comparison half-space pruning, proves that the same potential descends along inversion-removing swaps, derives the straight-line ambient contraction law for \(V(x)\), determines the exact maximal fixed-threshold relaxation time, and factors it with dimension to obtain the intrinsic geometric \(\Theta(n\log n)\) scale.</p>
             <div class="actions">
               <a class="button primary" href="sorting_as_gradient_flow.pdf">Open Manuscript</a>
             </div>
