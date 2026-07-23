@@ -1,8 +1,8 @@
 # Sorting as Gradient Flow on the Permutohedron
 
-Jonathan Robert Landers, 2026
+Jonathan R. Landers, 2026
 
-This repository accompanies the LaTeX manuscript **Sorting as Gradient Flow on the Permutohedron**. The paper treats sorting as directed motion through permutation space: adjacent swaps walk along edges of the permutohedron, comparison half-spaces shrink the set of feasible order types, and a continuous flow moves directly toward the sorted vertex $v_s=(1,2,\ldots,n)$. Comparisons remove informational ambiguity, while the flow removes metric distance; these are complementary descriptions rather than the same process.
+This repository accompanies the manuscript **Sorting as Gradient Flow on the Permutohedron**. The paper treats sorting as directed motion through permutation space: adjacent swaps walk along edges of the permutohedron, comparison half-spaces shrink the set of feasible order types, and a continuous flow moves directly toward the sorted vertex $v_s=(1,2,\ldots,n)$. Comparisons remove informational ambiguity, while the flow removes metric distance; these are complementary descriptions rather than the same process.
 
 The continuous model begins with a quadratic measure of rank displacement, whose ambient gradient points straight toward the sorted state:
 
