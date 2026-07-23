@@ -22,7 +22,7 @@ RNG = np.random.default_rng(20260720)
 
 
 def subset_sum_inequalities(point: np.ndarray) -> bool:
-    """Check the standard permutohedron inequalities in equation (55)."""
+    """Check the standard permutohedron inequalities in equation (67)."""
 
     n = len(point)
     if not math.isclose(float(point.sum()), n * (n + 1) / 2, abs_tol=TOLERANCE):
@@ -58,7 +58,7 @@ def exact_flow_matches_ode_and_contraction() -> bool:
 
 
 def flow_stays_in_permutohedron() -> bool:
-    """Equation (53): the flow is a convex combination of two vertices."""
+    """Equation (65): the flow is a convex combination of two vertices."""
 
     for n in range(3, 9):
         target = np.arange(1, n + 1, dtype=float)
@@ -72,7 +72,7 @@ def flow_stays_in_permutohedron() -> bool:
 
 
 def threshold_time_hits_requested_radius() -> bool:
-    """Equation (33): numerical trajectories hit the prescribed epsilon."""
+    """Equation (34): numerical trajectories hit the prescribed epsilon."""
 
     for n in range(3, 11):
         target = np.arange(1, n + 1, dtype=float)
@@ -87,7 +87,7 @@ def threshold_time_hits_requested_radius() -> bool:
 
 
 def braid_walls_are_not_supporting_facets() -> bool:
-    """Section 4.4: x_i=x_j cuts through P_n instead of supporting it."""
+    """Equation (66): x_i=x_j cuts through P_n instead of supporting it."""
 
     for n in range(3, 7):
         vertices = np.array(list(permutations(range(1, n + 1))), dtype=float)
@@ -102,7 +102,7 @@ def braid_walls_are_not_supporting_facets() -> bool:
 
 
 def facet_inequalities_hold_at_all_vertices() -> bool:
-    """Equation (55): enumerate every subset inequality at every small vertex."""
+    """Equation (67): enumerate every subset inequality at every small vertex."""
 
     for n in range(2, 7):
         for vertex in permutations(range(1, n + 1)):
@@ -112,7 +112,7 @@ def facet_inequalities_hold_at_all_vertices() -> bool:
 
 
 def target_direction_projects_to_itself() -> bool:
-    """Proposition 4.5: project v_s-x onto sampled tangent cones.
+    """Proposition 4.6: project v_s-x onto sampled tangent cones.
 
     At a vertex x of a polytope K=conv(vertices), its tangent cone is generated
     by vectors vertex-x.  Because v_s is one of K's vertices, v_s-x is one of
@@ -149,7 +149,7 @@ def target_direction_projects_to_itself() -> bool:
 
 
 def excluded_target_has_nearest_feasible_point() -> bool:
-    """Section 4.4: a convex region excluding v_s minimizes V elsewhere.
+    """Section 4.5: a convex region excluding v_s minimizes V elsewhere.
 
     For P3 intersected with x1>=x2, the nearest point to (1,2,3) is the braid
     wall midpoint (1.5,1.5,3), not the sorted vertex.  Convex weights over all
@@ -193,19 +193,56 @@ def excluded_target_has_nearest_feasible_point() -> bool:
 
 
 def normalized_scales_are_consistent() -> bool:
-    """Proposition 4.3 / Remark 4.4: inspect the claimed asymptotic scales."""
+    """Check Proposition 4.3, Theorem 4.4, and Corollary 4.5 numerically."""
 
     for n in (16, 64, 256, 1024, 4096):
-        log_factorial = math.lgamma(n + 1)  # natural log(n!), computed stably
-        normalized_comparison_budget = log_factorial / n
-        if not (0.5 * math.log(n) < normalized_comparison_budget < math.log(n)):
+        epsilon = 0.37
+        diameter = math.sqrt(n * (n**2 - 1) / 3)
+        maximal_relaxation = math.log(diameter / epsilon)
+        exact_relaxation_formula = 0.5 * math.log(
+            n * (n**2 - 1) / (3 * epsilon**2)
+        )
+        if not math.isclose(
+            maximal_relaxation,
+            exact_relaxation_formula,
+            abs_tol=TOLERANCE,
+            rel_tol=0.0,
+        ):
             return False
 
-        diameter = math.sqrt(n * (n**2 - 1) / 3)
-        geometric_product = (n - 1) * math.log(diameter)
+        geometric_product = (n - 1) * maximal_relaxation
+        exact_factorization = (n - 1) / 2 * math.log(
+            n * (n**2 - 1) / (3 * epsilon**2)
+        )
+        if not math.isclose(
+            geometric_product,
+            exact_factorization,
+            abs_tol=TOLERANCE,
+            rel_tol=0.0,
+        ):
+            return False
+
         ratio = geometric_product / (n * math.log(n))
         # log(diameter)=3/2 log(n)+O(1), so the ratio tends to 3/2.
-        if not 1.0 < ratio < 1.6:
+        if not 1.0 < ratio < 1.9:
+            return False
+
+        # The decision-tree lower bound and MergeSort upper bound bracket the
+        # optimal worst-case comparison count k(n) used in Corollary 4.5.
+        comparison_lower_bound = math.ceil(math.lgamma(n + 1) / math.log(2))
+        ceiling_log_2_n = math.ceil(math.log2(n))
+        merge_sort_upper_bound = (
+            n * ceiling_log_2_n - 2**ceiling_log_2_n + 1
+        )
+        normalized_lower = comparison_lower_bound / n
+        normalized_upper = merge_sort_upper_bound / n
+        log_2_n = math.log2(n)
+        if not (
+            0.5 * log_2_n
+            < normalized_lower
+            <= normalized_upper
+            < log_2_n
+        ):
             return False
     return True
 
@@ -213,13 +250,16 @@ def normalized_scales_are_consistent() -> bool:
 def main() -> int:
     checks = [
         ("Theorem 4.2: sampled flow obeys the ODE and exact contraction", exact_flow_matches_ode_and_contraction),
-        ("Theorem 4.2 / Eq. (33): threshold time hits epsilon", threshold_time_hits_requested_radius),
-        ("Eq. (53): straight-line flow stays inside the permutohedron", flow_stays_in_permutohedron),
-        ("Eq. (54): braid walls slice rather than support the permutohedron", braid_walls_are_not_supporting_facets),
-        ("Eq. (55): subset-sum facet inequalities hold at every small vertex", facet_inequalities_hold_at_all_vertices),
-        ("Proposition 4.5: target direction projects to itself", target_direction_projects_to_itself),
-        ("Target-excluding constraint: descent has a different nearest point", excluded_target_has_nearest_feasible_point),
-        ("Proposition 4.3 / Remark 4.4: normalized numerical scales", normalized_scales_are_consistent),
+        ("Theorem 4.2 / Eq. (34): threshold time hits epsilon", threshold_time_hits_requested_radius),
+        ("Eq. (65): straight-line flow stays inside the permutohedron", flow_stays_in_permutohedron),
+        ("Eq. (66): braid walls slice rather than support the permutohedron", braid_walls_are_not_supporting_facets),
+        ("Eq. (67): subset-sum facet inequalities hold at every small vertex", facet_inequalities_hold_at_all_vertices),
+        ("Proposition 4.6: target direction projects to itself", target_direction_projects_to_itself),
+        ("Section 4.5: target-excluding descent has a different nearest point", excluded_target_has_nearest_feasible_point),
+        (
+            "Proposition 4.3 / Theorem 4.4 / Corollary 4.5: exact and asymptotic scales",
+            normalized_scales_are_consistent,
+        ),
     ]
     count = run_group("Numerical geometry and constraint verification", checks)
     print(f"\nNumerical verification complete: {count} checks passed.")

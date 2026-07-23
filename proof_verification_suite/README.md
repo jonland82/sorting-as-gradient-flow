@@ -25,9 +25,9 @@ python proof_verification_suite/verify_numerical_geometry.py
 
 | Script | Manuscript claims checked | Method |
 | --- | --- | --- |
-| `verify_symbolic.py` | Lemma 2.1; Proposition 3.2's constant sum; Proposition 4.1's potential drop; Theorem 4.2's gradient, closed-form solution, contraction, threshold time, and reverse-word radius; the energy-dissipation identity illustrated in the discussion of Figure 4 | Exact symbolic simplification with SymPy |
-| `verify_combinatorial.py` | Lemma 2.1's decision-tree leaf capacity; Proposition 3.2's vertex count and dimension; Proposition 3.3's fixed-coordinate candidate maps; Table 1 and Figure 3; Proposition 4.1's Lyapunov bounds; Proposition 4.3 and equation (56)'s reverse-word diameter | Exhaustive permutation enumeration through moderate `n` |
-| `verify_numerical_geometry.py` | Theorem 4.2 trajectories; equations (65)-(67) for the straight-line flow, braid walls, and subset-sum facets; Proposition 4.6's tangent-cone projection; a target-excluding constraint; Proposition 4.3, Theorem 4.4, and Corollary 4.5 scales | NumPy sampling and SciPy optimization with a fixed random seed |
+| `verify_symbolic.py` | Lemma 2.1 and equation (7); Proposition 3.2 and equations (12)-(13); Proposition 4.1 and equations (25)-(28); Theorem 4.2 and equations (30)-(36); the energy-dissipation identity illustrated in the discussion of Figure 4 | Exact symbolic simplification with SymPy |
+| `verify_combinatorial.py` | Lemma 2.1's decision-tree leaf capacity; Proposition 3.2's vertex count and dimension; Proposition 3.3 and equation (20); Table 1 and Figure 3; Proposition 4.1's Lyapunov bounds; Proposition 4.3 and equation (56)'s reverse-word diameter | Exhaustive permutation enumeration through moderate `n` |
+| `verify_numerical_geometry.py` | Theorem 4.2 trajectories and equation (34); equations (65)-(67) for the straight-line flow, braid walls, and subset-sum facets; Proposition 4.6's tangent-cone projection; Section 4.5's target-excluding constraint; Proposition 4.3, Theorem 4.4, and Corollary 4.5 | NumPy sampling and SciPy optimization with a fixed random seed |
 
 ## Interpretation
 

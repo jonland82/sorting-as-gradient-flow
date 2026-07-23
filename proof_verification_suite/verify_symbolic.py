@@ -72,15 +72,25 @@ def closed_form_solves_flow() -> bool:
     return ode_residual == 0 and initial_residual == 0
 
 
-def squared_norm_contraction() -> bool:
-    """Equation (32): squared displacement contracts by exp(-2t)."""
+def norm_contraction() -> bool:
+    """Equations (32)-(33): norm and squared norm contract exactly."""
 
     t = sp.symbols("t", nonnegative=True)
     displacement = sp.symbols("d1:5", real=True)
     evolved = [component * sp.exp(-t) for component in displacement]
     evolved_norm_sq = sum(component**2 for component in evolved)
     initial_norm_sq = sum(component**2 for component in displacement)
-    return sp.simplify(evolved_norm_sq - initial_norm_sq * sp.exp(-2 * t)) == 0
+    squared_identity = sp.simplify(
+        evolved_norm_sq - initial_norm_sq * sp.exp(-2 * t)
+    )
+
+    # A positive symbolic radius avoids introducing component-wise sign
+    # assumptions while checking the corresponding unsquared identity.
+    radius = sp.symbols("radius", positive=True)
+    unsquared_identity = sp.simplify(
+        sp.sqrt(radius * sp.exp(-2 * t)) - sp.sqrt(radius) * sp.exp(-t)
+    )
+    return squared_identity == 0 and unsquared_identity == 0
 
 
 def energy_dissipation_identity() -> bool:
@@ -98,7 +108,7 @@ def energy_dissipation_identity() -> bool:
 
 
 def threshold_time() -> bool:
-    """Equation (33): at the stated time, squared distance equals epsilon^2."""
+    """Equation (34): at the stated time, squared distance equals epsilon^2."""
 
     radius_sq, epsilon = sp.symbols("radius_sq epsilon", positive=True)
     threshold = sp.Rational(1, 2) * sp.log(radius_sq / epsilon**2)
@@ -107,7 +117,7 @@ def threshold_time() -> bool:
 
 
 def reverse_word_distance() -> bool:
-    """Equations (34)-(35): the reverse word has squared radius n(n^2-1)/3."""
+    """Equation (35): the reverse word has squared radius n(n^2-1)/3."""
 
     i, n = sp.symbols("i n", positive=True, integer=True)
     radius_sq = sp.summation((n + 1 - 2 * i) ** 2, (i, 1, n))
@@ -116,7 +126,7 @@ def reverse_word_distance() -> bool:
 
 
 def reverse_word_potential() -> bool:
-    """Equation (35): V is one half of the squared reverse-word radius."""
+    """Equation (36): V is one half of the squared reverse-word radius."""
 
     n = sp.symbols("n", positive=True, integer=True)
     radius_sq = n * (n**2 - 1) / 3
@@ -131,11 +141,11 @@ def main() -> int:
         ("Proposition 4.1 / Eqs. (25)-(28): adjacent-swap potential drop", adjacent_swap_drop),
         ("Eqs. (23), (30): negative gradient points to the sorted target", gradient_is_target_minus_state),
         ("Theorem 4.2 / Eq. (31): closed-form flow solves the IVP", closed_form_solves_flow),
-        ("Theorem 4.2 / Eq. (32): exact squared-norm contraction", squared_norm_contraction),
+        ("Theorem 4.2 / Eqs. (32)-(33): exact norm contraction", norm_contraction),
         ("Gradient-flow energy dissipation: dV/dt = -||grad V||^2", energy_dissipation_identity),
-        ("Theorem 4.2 / Eq. (33): threshold-time identity", threshold_time),
-        ("Theorem 4.2 / Eq. (34): reverse-word squared distance", reverse_word_distance),
-        ("Theorem 4.2 / Eq. (35): reverse-word potential", reverse_word_potential),
+        ("Theorem 4.2 / Eq. (34): threshold-time identity", threshold_time),
+        ("Theorem 4.2 / Eq. (35): reverse-word squared distance", reverse_word_distance),
+        ("Theorem 4.2 / Eq. (36): reverse-word potential", reverse_word_potential),
     ]
     count = run_group("Exact symbolic verification (SymPy)", checks)
     print(f"\nSymbolic verification complete: {count} checks passed.")

@@ -184,7 +184,7 @@ def canonical_p3_halfspaces() -> bool:
 
 
 def reverse_word_is_farthest() -> bool:
-    """Theorem 4.2 and Eq. (50): reverse order realizes the diameter."""
+    """Proposition 4.3 and Eq. (56): reverse order realizes the diameter."""
 
     for n in range(2, 9):
         target = tuple(range(1, n + 1))
@@ -222,7 +222,7 @@ def main() -> int:
         ("Table 1: candidate counts 6 -> 3 -> 2 -> 1", running_example_candidate_counts),
         ("Figure 3: canonical P3 comparison cuts isolate (1,2,3)", canonical_p3_halfspaces),
         ("Proposition 4.1: swap drop and inversion/potential inequalities", adjacent_swap_and_lyapunov_bounds),
-        ("Theorem 4.2 / Eq. (50): reverse word realizes finite-case diameter", reverse_word_is_farthest),
+        ("Proposition 4.3 / Eq. (56): reverse word realizes finite-case diameter", reverse_word_is_farthest),
     ]
     count = run_group("Exhaustive combinatorial verification", checks)
     print(f"\nCombinatorial verification complete: {count} checks passed.")
